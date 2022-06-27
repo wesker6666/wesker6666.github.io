@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="wesker&#39;s blog" />
+       
+      <meta name="description" content="wesker&#39;s blog" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>常用Linux命令 |  wesker&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/wei.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="wesker's blog" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-常用Linux命令"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  常用Linux命令
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2021-10-31T04:42:45.000Z" itemprop="datePublished">2021-10-31</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">790</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">3 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="1-系统服务管理"><a href="#1-系统服务管理" class="headerlink" title="1.系统服务管理"></a>1.系统服务管理</h1><h3 id="systemctl"><a href="#systemctl" class="headerlink" title="[systemctl]"></a>[systemctl]</h3><blockquote>
+<p><code>systemctl</code>命令是<code>service</code>和<code>chkconfig</code>命令的组合体，可用于管理系统。</p>
+</blockquote>
+<ul>
+<li>输出系统中各个服务的状态：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl list-units --<span class="hljs-built_in">type</span>=service<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031130728536.png"></p>
+<ul>
+<li>查看服务的运行状态：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">systemctl status firewalld<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031130413869.png" alt="image-20211031130622285"></p>
+<p><code>这时服务状态显示active,表示正在运行</code></p>
+<ul>
+<li>关闭服务：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">systemctl stop firewalld<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031130509523.png"></p>
+<p><code>运行了关闭服务命令后查看服务状态，显示inactive,表示关闭状态</code></p>
+<ul>
+<li>启动服务：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">systemctl start firewalld<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031131637581.png"></p>
+<ul>
+<li>重新启动服务（不管当前服务是启动还是关闭）：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">systemctl restart firewalld<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>重新载入配置信息而不中断服务：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">systemctl reload firewalld<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>禁止服务开机自启动：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl <span class="hljs-built_in">disable</span> firewalld<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031132137028.png"></p>
+<ul>
+<li>设置服务开机自启动：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl <span class="hljs-built_in">enable</span> firewalld<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031132653263.png"></p>
+<h1 id="2-文件管理"><a href="#2-文件管理" class="headerlink" title="2.文件管理"></a>2.文件管理</h1><h3 id="ls"><a href="#ls" class="headerlink" title="[ls]"></a>[ls]</h3><p>列出指定目录下的所有文件，列出<code>1803130230</code>目录下的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">ls -l 1803130230<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031133004369.png"></p>
+<h3 id="pwd"><a href="#pwd" class="headerlink" title="[pwd]"></a>[pwd]</h3><p>获取目前所在工作目录的绝对路径：</p>
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031133256803.png"></p>
+<h3 id="cd"><a href="#cd" class="headerlink" title="[cd]"></a>[cd]</h3><p>改变当前工作目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> 1803130230<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031133454125.png" alt="image-20211031133454125"></p>
+<h3 id="date"><a href="#date" class="headerlink" title="[date]"></a>[date]</h3><p>显示或修改系统时间与日期；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">date <span class="hljs-string">&#x27;+%Y-%m-%d %H:%M:%S&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031133619405.png"></p>
+<h3 id="passwd"><a href="#passwd" class="headerlink" title="[passwd]"></a>[passwd]</h3><p>用于设置用户密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">passwd root<br></code></pre></td></tr></table></figure>
+
+<h3 id="su"><a href="#su" class="headerlink" title="[su]"></a>[su]</h3><p>改变用户身份（切换到超级用户）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">su -<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031162707373.png"></p>
+<h3 id="clear"><a href="#clear" class="headerlink" title="[clear]"></a>[clear]</h3><p>用于清除屏幕信息</p>
+<h3 id="man"><a href="#man" class="headerlink" title="[man]"></a>[man]</h3><p>显示指定命令的帮助信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">man ls<br></code></pre></td></tr></table></figure>
+
+<h3 id="who"><a href="#who" class="headerlink" title="[who]"></a>[who]</h3><ul>
+<li>查询系统处于什么运行级别：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">who -r<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031163321021.png"></p>
+<p>显示目前登录到系统的用户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">who -buT<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031163454252.png"></p>
+<h3 id="free"><a href="#free" class="headerlink" title="[free]"></a>[free]</h3><p>显示系统内存状态（单位MB）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">free -m<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031163622875.png"></p>
+<h3 id="ps"><a href="#ps" class="headerlink" title="[ps]"></a>[ps]</h3><ul>
+<li>显示系统进程运行动态：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">ps -ef<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查看<code>sshd</code>进程的运行动态：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">ps -ef | grep sshd<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031164216771.png"></p>
+<h3 id="top"><a href="#top" class="headerlink" title="[top]"></a>[top]</h3><p>查看即时活跃的进程，类似Windows的任务管理器。</p>
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031164652111.png"></p>
+<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="[mkdir]"></a>[mkdir]</h3><p>创建目录：</p>
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031164927069.png"></p>
+<h3 id="more"><a href="#more" class="headerlink" title="[more]"></a>[more]</h3><p>用于分页查看文件，例如每页10行查看<code>boot.log</code>文件：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">more -c <span class="hljs-number">-10</span> /var/log/boot.log<br></code></pre></td></tr></table></figure>
+
+<h3 id="cat"><a href="#cat" class="headerlink" title="[cat]"></a>[cat]</h3><p>用于查看文件，例如查看Linux启动日志文件文件，并标明行号：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cat -Ab /var/log/boot.log<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/webp.webp"></p>
+<h3 id="touch"><a href="#touch" class="headerlink" title="[touch]"></a>[touch]</h3><p>用于创建文件，例如创建<code>text.txt</code>文件：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">touch text<span class="hljs-selector-class">.txt</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211031170903003.png"></p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="[rm]"></a>[rm]</h3><ul>
+<li>删除文件：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">rm text<span class="hljs-selector-class">.txt</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>强制删除某个目录及其子目录：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">rm -rf <br></code></pre></td></tr></table></figure>
+
+<h3 id="cp"><a href="#cp" class="headerlink" title="[cp]"></a>[cp]</h3><p>用于拷贝文件，例如将<code>test1</code>目录复制到<code>test2</code>目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">cp -r data/ newdata<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101162152294.png"></p>
+<h3 id="mv"><a href="#mv" class="headerlink" title="[mv]"></a>[mv]</h3><p>用于移动或覆盖文件：</p>
+<p>将data下的test.txt文件移动到newdata文件夹下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">mv data/test<span class="hljs-selector-class">.txt</span> newdata/<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101162605506.png"></p>
+<h1 id="3-压缩与解压"><a href="#3-压缩与解压" class="headerlink" title="3.压缩与解压"></a>3.压缩与解压</h1><h3 id="tar"><a href="#tar" class="headerlink" title="[tar]"></a>[tar]</h3><ul>
+<li>将<code>data</code>文件夹中的文件归档到文件<code>data.tar</code>（并不会进行压缩）：</li>
+</ul>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">tar</span> -cvf <span class="hljs-class"><span class="hljs-keyword">data</span>.tar <span class="hljs-keyword">data</span></span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101174830289.png"></p>
+<ul>
+<li>用<code>gzip</code>压缩文件夹<code>newdata</code>中的文件到文件<code>newdata.tar.gz</code>：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">tar -zcvf newdata.tar.gz newdata<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101175324591.png"></p>
+<ul>
+<li>用<code>bzip2</code>压缩文件夹<code>newdata</code>到文件<code>data/etc.tar.bz2</code>：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">tar -jcvf data/newdata.tar.bz2 newdata<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101175545102.png"></p>
+<ul>
+<li>分页查看压缩包中内容（gzip）：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs swift">tar <span class="hljs-operator">-</span>ztvf newdata.tar.gz <span class="hljs-operator">|</span>more <span class="hljs-operator">-</span>c <span class="hljs-operator">-</span><span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>解压文件到当前目录（gzip）：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">tar -zxvf newdata.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101181027805.png"></p>
+<ul>
+<li>解压文件到指定目录（gzip）：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">tar -zxvf newdata.tar.gz -C data<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101181141639.png"></p>
+<h1 id="4-磁盘和网络管理"><a href="#4-磁盘和网络管理" class="headerlink" title="4.磁盘和网络管理"></a>4.磁盘和网络管理</h1><h3 id="df"><a href="#df" class="headerlink" title="[df]"></a>[df]</h3><p>查看磁盘空间占用情况：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">df -hT<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101181502648.png"></p>
+<h3 id="dh"><a href="#dh" class="headerlink" title="[dh]"></a>[dh]</h3><p>查看当前目录下的文件及文件夹所占大小：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs swift">du <span class="hljs-operator">-</span>h <span class="hljs-operator">--</span>max<span class="hljs-operator">-</span>depth<span class="hljs-operator">=</span><span class="hljs-number">1</span> <span class="hljs-operator">./*</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101182036752.png"></p>
+<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="[ifconfig]"></a>[ifconfig]</h3><p>显示当前网络接口状态：</p>
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101182131655.png"></p>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="[netstat]"></a>[netstat]</h3><ul>
+<li>查看当前路由信息：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">netstat -rn<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101182312832.png"></p>
+<ul>
+<li>查看所有有效TCP连接：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">netstat -an<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查看系统中启动的监听服务：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">netstat -tulnp<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101182919141.png"></p>
+<ul>
+<li>查看处于连接状态的系统资源信息：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">netstat -atunp<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101183352262.png"></p>
+<h3 id="wget"><a href="#wget" class="headerlink" title="[wget]"></a>[wget]</h3><p>从网络上下载文件</p>
+<p><img src="/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/image-20211101193153936.png">![image-</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/11/09/%E5%B8%B8%E8%A7%81%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            常见经典排序
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/10/25/SpringMVC/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">SpringMVC</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "ro9ik0ujr5xEuCjVNSOaDGX0-gzGzoHsz",
+    app_key: "5TUjb1R3rddvH9AXsn1OAIDP",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2022
+        <i class="ri-heart-fill heart_icon"></i> wesker
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/wei.ico" alt="wesker&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

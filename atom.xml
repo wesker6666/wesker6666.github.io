@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>wesker&#39;s blog</title>
+  
+  <subtitle>wesker</subtitle>
+  <link href="http://www.wesker.top/atom.xml" rel="self"/>
+  
+  <link href="http://www.wesker.top/"/>
+  <updated>2022-06-27T11:44:33.524Z</updated>
+  <id>http://www.wesker.top/</id>
+  
+  <author>
+    <name>wesker</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis</title>
+    <link href="http://www.wesker.top/2022/06/23/Redis/"/>
+    <id>http://www.wesker.top/2022/06/23/Redis/</id>
+    <published>2022-06-23T04:54:14.000Z</published>
+    <updated>2022-06-27T11:44:33.524Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Redis入门&quot;&gt;&lt;a href=&quot;#Redis入门&quot; class=&quot;headerlink&quot; title=&quot;Redis入门&quot;&gt;&lt;/a&gt;Redis入门&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://www.wesker.top/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql出现2059</title>
+    <link href="http://www.wesker.top/2022/06/20/mysql%E5%87%BA%E7%8E%B02059/"/>
+    <id>http://www.wesker.top/2022/06/20/mysql%E5%87%BA%E7%8E%B02059/</id>
+    <published>2022-06-20T11:59:04.000Z</published>
+    <updated>2022-06-20T12:07:28.393Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;mysql出现2059的解决方法&quot;&gt;&lt;a href=&quot;#mysql出现2059的解决方法&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="mysql" scheme="http://www.wesker.top/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spawnfailed解决方式</title>
+    <link href="http://www.wesker.top/2022/06/06/Spawn-failed%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/"/>
+    <id>http://www.wesker.top/2022/06/06/Spawn-failed%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/</id>
+    <published>2022-06-06T15:31:37.000Z</published>
+    <updated>2022-06-06T15:48:02.899Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Hexo部署出现错误err-Error-Spawn-failed解决方式&quot;&gt;&lt;a href=&quot;#Hexo部署出现错误err-Error-Spawn-failed解决方式&quot; class=&quot;headerlink&quot; title=&quot;Hexo部署出现错误err:</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://www.wesker.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="hexo" scheme="http://www.wesker.top/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker学习</title>
+    <link href="http://www.wesker.top/2022/06/06/docker%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://www.wesker.top/2022/06/06/docker%E5%AD%A6%E4%B9%A0/</id>
+    <published>2022-06-06T07:34:51.000Z</published>
+    <updated>2022-06-23T04:44:07.285Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-docker概述&quot;&gt;&lt;a href=&quot;#1-docker概述&quot; class=&quot;headerlink&quot; title=&quot;1.docker概述&quot;&gt;&lt;/a&gt;1.docker概述&lt;/h1&gt;&lt;p&gt;docker官网：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="docker" scheme="http://www.wesker.top/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Springcloud面试题</title>
+    <link href="http://www.wesker.top/2022/06/01/Springcloud%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <id>http://www.wesker.top/2022/06/01/Springcloud%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
+    <published>2022-06-01T06:59:08.000Z</published>
+    <updated>2022-06-01T09:48:46.391Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-什么是微服务架构&quot;&gt;&lt;a href=&quot;#1-什么是微服务架构&quot; class=&quot;headerlink&quot; title=&quot;1.什么是微服务架构&quot;&gt;&lt;/a&gt;1.什么是微服务架构&lt;/h1&gt;&lt;p&gt;​       </summary>
+        
+      
+    
+    
+    
+    <category term="面试题" scheme="http://www.wesker.top/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+    <category term="面试题" scheme="http://www.wesker.top/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    <category term="Springcloud" scheme="http://www.wesker.top/tags/Springcloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud</title>
+    <link href="http://www.wesker.top/2022/04/08/SpringCloud/"/>
+    <id>http://www.wesker.top/2022/04/08/SpringCloud/</id>
+    <published>2022-04-08T05:09:19.000Z</published>
+    <updated>2022-04-10T08:54:57.358Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1、微服务概述&quot;&gt;&lt;a href=&quot;#1、微服务概述&quot; class=&quot;headerlink&quot; title=&quot;1、微服务概述&quot;&gt;&lt;/a&gt;1、微服务概述&lt;/h1&gt;&lt;h2 id=&quot;1-1-什么是微服务？&quot;&gt;&lt;a href=&quot;#1-1-什么是微服务？&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="SpringCloud" scheme="http://www.wesker.top/tags/SpringCloud/"/>
+    
+    <category term="微服务" scheme="http://www.wesker.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常见经典排序</title>
+    <link href="http://www.wesker.top/2021/11/09/%E5%B8%B8%E8%A7%81%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F/"/>
+    <id>http://www.wesker.top/2021/11/09/%E5%B8%B8%E8%A7%81%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F/</id>
+    <published>2021-11-09T07:07:32.000Z</published>
+    <updated>2021-11-20T09:36:54.449Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-冒泡排序&quot;&gt;&lt;a href=&quot;#1-冒泡排序&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Java" scheme="http://www.wesker.top/tags/Java/"/>
+    
+    <category term="算法" scheme="http://www.wesker.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="排序" scheme="http://www.wesker.top/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用Linux命令</title>
+    <link href="http://www.wesker.top/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/"/>
+    <id>http://www.wesker.top/2021/10/31/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/</id>
+    <published>2021-10-31T04:42:45.000Z</published>
+    <updated>2021-11-01T13:25:42.610Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-系统服务管理&quot;&gt;&lt;a href=&quot;#1-系统服务管理&quot; class=&quot;headerlink&quot; title=&quot;1.系统服务管理&quot;&gt;&lt;/a&gt;1.系统服务管理&lt;/h1&gt;&lt;h3 id=&quot;systemctl&quot;&gt;&lt;a href=&quot;#systemctl&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Linux命令" scheme="http://www.wesker.top/tags/Linux%E5%91%BD%E4%BB%A4/"/>
+    
+    <category term="笔记" scheme="http://www.wesker.top/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC</title>
+    <link href="http://www.wesker.top/2021/10/25/SpringMVC/"/>
+    <id>http://www.wesker.top/2021/10/25/SpringMVC/</id>
+    <published>2021-10-25T06:57:49.000Z</published>
+    <updated>2021-10-27T07:30:01.751Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;01-SpringMVC框架&quot;&gt;&lt;a href=&quot;#01-SpringMVC框架&quot; class=&quot;headerlink&quot; title=&quot;01.SpringMVC框架&quot;&gt;&lt;/a&gt;01.SpringMVC框架&lt;/h1&gt;&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="框架" scheme="http://www.wesker.top/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="Java" scheme="http://www.wesker.top/tags/Java/"/>
+    
+    <category term="SpringMVC" scheme="http://www.wesker.top/tags/SpringMVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring入门</title>
+    <link href="http://www.wesker.top/2021/10/07/Spring/"/>
+    <id>http://www.wesker.top/2021/10/07/Spring/</id>
+    <published>2021-10-07T08:06:23.000Z</published>
+    <updated>2021-10-24T06:14:32.941Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Spring框架&quot;&gt;&lt;a href=&quot;#Spring框架&quot; class=&quot;headerlink&quot; title=&quot;Spring框架&quot;&gt;&lt;/a&gt;Spring框架&lt;/h1&gt;&lt;h1 id=&quot;1-软件框架技术简介&quot;&gt;&lt;a href=&quot;#1-软件框架技术简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="框架" scheme="http://www.wesker.top/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="Java" scheme="http://www.wesker.top/tags/Java/"/>
+    
+    <category term="Spring" scheme="http://www.wesker.top/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Springboot入门</title>
+    <link href="http://www.wesker.top/2021/10/06/Springboot/"/>
+    <id>http://www.wesker.top/2021/10/06/Springboot/</id>
+    <published>2021-10-06T09:24:55.000Z</published>
+    <updated>2021-10-07T08:19:41.024Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-SpringBoot简介&quot;&gt;&lt;a href=&quot;#1-SpringBoot简介&quot; class=&quot;headerlink&quot; title=&quot;1.SpringBoot简介&quot;&gt;&lt;/a&gt;1.SpringBoot简介&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Springboot" scheme="http://www.wesker.top/tags/Springboot/"/>
+    
+    <category term="框架" scheme="http://www.wesker.top/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="Java" scheme="http://www.wesker.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis入门</title>
+    <link href="http://www.wesker.top/2021/10/02/mybatis/"/>
+    <id>http://www.wesker.top/2021/10/02/mybatis/</id>
+    <published>2021-10-02T10:12:57.000Z</published>
+    <updated>2021-10-06T04:27:22.671Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1、ORM思想&quot;&gt;&lt;a href=&quot;#1、ORM思想&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="框架" scheme="http://www.wesker.top/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="Java" scheme="http://www.wesker.top/tags/Java/"/>
+    
+    <category term="Mybatis" scheme="http://www.wesker.top/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>系统重装和激活</title>
+    <link href="http://www.wesker.top/2021/09/29/reset-system/"/>
+    <id>http://www.wesker.top/2021/09/29/reset-system/</id>
+    <published>2021-09-29T02:36:24.000Z</published>
+    <updated>2021-09-29T08:06:25.023Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1、准备&quot;&gt;&lt;a href=&quot;#1、准备&quot; class=&quot;headerlink&quot; title=&quot;1、准备&quot;&gt;&lt;/a&gt;1、准备&lt;/h2&gt;&lt;p&gt;① 准备8G或8G以上的空U盘。（制作U盘会格式化U盘，U盘内重要数据要事先备份好）。&lt;br&gt;②</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://www.wesker.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="系统重装" scheme="http://www.wesker.top/tags/%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A3%85/"/>
+    
+    <category term="激活" scheme="http://www.wesker.top/tags/%E6%BF%80%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown语法总结</title>
+    <link href="http://www.wesker.top/2021/09/28/first-blog/"/>
+    <id>http://www.wesker.top/2021/09/28/first-blog/</id>
+    <published>2021-09-28T06:42:05.000Z</published>
+    <updated>2021-11-09T07:10:20.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1、Markdown-简介&quot;&gt;&lt;a href=&quot;#1、Markdown-简介&quot; class=&quot;headerlink&quot; title=&quot;1、Markdown 简介&quot;&gt;&lt;/a&gt;1、Markdown 简介&lt;/h2&gt;&lt;p&gt;Markdown</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://www.wesker.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Markdown" scheme="http://www.wesker.top/tags/Markdown/"/>
+    
+    <category term="总结" scheme="http://www.wesker.top/tags/%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="技术" scheme="http://www.wesker.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+</feed>

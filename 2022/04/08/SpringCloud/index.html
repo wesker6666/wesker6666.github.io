@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="wesker&#39;s blog" />
+       
+      <meta name="description" content="wesker&#39;s blog" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>SpringCloud |  wesker&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/wei.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="wesker's blog" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-SpringCloud"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  SpringCloud
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/04/08/SpringCloud/" class="article-date">
+  <time datetime="2022-04-08T05:09:19.000Z" itemprop="datePublished">2022-04-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="1、微服务概述"><a href="#1、微服务概述" class="headerlink" title="1、微服务概述"></a>1、微服务概述</h1><h2 id="1-1-什么是微服务？"><a href="#1-1-什么是微服务？" class="headerlink" title="1.1.什么是微服务？"></a>1.1.什么是微服务？</h2><p>​        微服务（Microservice Architecture）是近几年流行的一种架构思想，就目前而言，对于微服务，业界并没有一个人统一的标准的定义，但通常而言，微服务架构是一种结构模式，或者说是一种架构风格，它提倡<strong>将单一的应用程序划分成一组小的服务</strong>，每个服务运行在其独立的自己的进程内，服务之间相互协调，互相配置，为用户提供最终价值。服务之间采用轻量级的通信机制互相沟通，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境当中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言，工具进行构建，可以有一个非常轻量级的集中式管理来协调这些服务，可以使用不同的语言来编写服务，也可以使用不同的数据存储。</p>
+<p>可能有的人觉得官方的话太过生涩，我们从技术维度来理解下:<br>        微服务化的核心就是将传统的一站式应用，根据业务拆分成一个一个的服务，彻底地去耦合，每一个微服务提供单个业务功能的服务，一个服务做一件事情，从技术角度看就是一种小而独立的处理过程，类似进程的概念，能够自行单独启动或销毁，拥有自己独立的数据库。</p>
+<h2 id="1-2-微服务架构四个核心问题？"><a href="#1-2-微服务架构四个核心问题？" class="headerlink" title="1.2.微服务架构四个核心问题？"></a>1.2.微服务架构四个核心问题？</h2><p>​    1.服务很多，客户端怎么访问？</p>
+<p>​    2.服务之间如何通信？</p>
+<p>​    3.如何治理？</p>
+<p>​    4.服务挂了怎么办？</p>
+<h2 id="1-3-解决方案"><a href="#1-3-解决方案" class="headerlink" title="1.3.解决方案"></a>1.3.解决方案</h2><p>​    SpringCloud  生态！   SpringBoot</p>
+<p>​    1.SpringCloud NetFlix  一站式解决方案！</p>
+<p>​        api网关，zuul组件</p>
+<p>​        Feign    —-HttClient —-   http通信方式，同步，阻塞</p>
+<p>​        服务注册发现：Eureka</p>
+<p>​        熔断机制：Hystrix</p>
+<p>​    2.Apache Dubbo zookeeper  半自动，需要整合别人的</p>
+<p>​        API：没有，找第三方组件</p>
+<p>​        Dubbo</p>
+<p>​        zookeeper</p>
+<p>​        方案不完善</p>
+<p>​    3.SpringCloud alibaba 一站式解决方案！更简单</p>
+<h1 id="2、微服务与微服务架构"><a href="#2、微服务与微服务架构" class="headerlink" title="2、微服务与微服务架构"></a>2、微服务与微服务架构</h1><h2 id="2-1-微服务"><a href="#2-1-微服务" class="headerlink" title="2.1.微服务"></a>2.1.微服务</h2><p>​        强调的是服务的大小，他关注的是某一个点，是具体解决某一个问题/提供落地对应服务的一个服务应用，狭义的看，可以看做是IDEA中的一个个微服务工程，或者Moudel</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">IDEA工具里面使用Maven开发的一个个独立的小Moudle，它具体是使用springboot开发的一个小模块，专业的事<br>情交给专业的模块来做，一个模块就做着一件事情<br>强调的是一个个的个体，每个个体完成一个具体的任务或者功能!<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-2-微服务架构"><a href="#2-2-微服务架构" class="headerlink" title="2.2.微服务架构"></a>2.2.微服务架构</h2><p>​        —种新的架构形式,Martin Fowler，2014提出。<br>​        微服务架构是一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调，互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务于服务间采用轻量级的通信机制互相协作，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言，工具对其进行构建。</p>
+<h3 id="2-2-1-微服务优缺点"><a href="#2-2-1-微服务优缺点" class="headerlink" title="2.2.1.微服务优缺点"></a>2.2.1.微服务优缺点</h3><p><strong>优点：</strong></p>
+<ul>
+<li>每个服务足够内聚，足够小，代码容易理解，这样能聚焦一个指定的业务功能或业务需求；</li>
+<li>开发简单，开发效率提高，一个服务可能就是专一的只干一件事;</li>
+<li>微服务能够被小团队单独开发，这个小团队是2~5人的开发人员组成;</li>
+<li>微服务是松耦合的，是有功能意义的服务，无论是在开发阶段或部署阶段都是独立的</li>
+<li>微服务能使用不同的语言开发。</li>
+<li>易于和第三方集成，微服务允许容易且灵活的方式集成自动部署，通过持续集成工具，如jenkins，Hudson,bamboo</li>
+<li>微服务易于被一个开发人员理解，修改和维护，这样小团队能够更关注自己的工作成果。无需通过合作才能体现价值。</li>
+<li>微服务允许你利用融合最新技术。</li>
+<li><strong>微服务只是业务逻辑的代码，不会和HTML, CSS或其他界面混合</strong></li>
+<li><strong>每个微服务都有自己的存储能力，可以有自己的数据库，也可以有统一数据库</strong></li>
+</ul>
+<p><strong>缺点:</strong></p>
+<ul>
+<li>开发人员要处理分布式系统的复杂性</li>
+<li>多服务运维难度，随着服务的增加，运维的压力也在增大·系统部署依赖</li>
+<li>服务间通信成本数据一致性。系统集成测试性能监控…..</li>
+</ul>
+<h3 id="2-2-2-微服务技术栈有哪些？"><a href="#2-2-2-微服务技术栈有哪些？" class="headerlink" title="2.2.2.微服务技术栈有哪些？"></a>2.2.2.微服务技术栈有哪些？</h3><table>
+<thead>
+<tr>
+<th>微服务条目</th>
+<th>落地技术</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务开发</td>
+<td>SpringBoot，Spring，SpringMVC</td>
+</tr>
+<tr>
+<td>服务配置与管理</td>
+<td>Netflix公司的Archaius，阿里的Diamond等</td>
+</tr>
+<tr>
+<td>服务注册与发现</td>
+<td>Eureka、Consul、Zookeeper等</td>
+</tr>
+<tr>
+<td>服务调用</td>
+<td>Rest、RPC、gRPC</td>
+</tr>
+<tr>
+<td>服务熔断器</td>
+<td>Hystrix、Envoy等</td>
+</tr>
+<tr>
+<td>负载均衡</td>
+<td>Ribbon、Nginx等</td>
+</tr>
+<tr>
+<td>服务接口调用（客户端调用服务的简化工具）</td>
+<td>Feign等</td>
+</tr>
+<tr>
+<td>消息队列</td>
+<td>Kafka、RabbitMQ、ActiveMQ等</td>
+</tr>
+<tr>
+<td>服务配置中心管理</td>
+<td>SpringCloudConfig、Chef等</td>
+</tr>
+<tr>
+<td>服务路由（API网关）</td>
+<td>Zuul等</td>
+</tr>
+<tr>
+<td>服务监控</td>
+<td>Zabbix、Nagios、Metrics、Specatator等</td>
+</tr>
+<tr>
+<td>全链路追踪</td>
+<td>Zipkin、Brave、Dapper等</td>
+</tr>
+<tr>
+<td>服务部署</td>
+<td>Docker、OpenStack、Kubernetes等</td>
+</tr>
+<tr>
+<td>数据流操作开发包</td>
+<td>SpringCloudStream（封装Redis、Rabbit、Kafka等发送接受消息）</td>
+</tr>
+<tr>
+<td>事件消息总栈</td>
+<td>SpringCloud Bus</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-3-为什么选择SpringCloud作为微服务架构"><a href="#2-2-3-为什么选择SpringCloud作为微服务架构" class="headerlink" title="2.2.3.为什么选择SpringCloud作为微服务架构"></a>2.2.3.为什么选择SpringCloud作为微服务架构</h3><p><strong>1、选型依据</strong></p>
+<ul>
+<li>​    整体解决方案和框架成熟度</li>
+<li>​    社区热度</li>
+<li>​    可维护性</li>
+<li>​    学习曲线</li>
+</ul>
+<p><strong>2、当前各大IT公司用的微服务架构都有哪些？</strong></p>
+<ul>
+<li>​    阿里：dubbo+HFS</li>
+<li>​    京东：JSF</li>
+<li>​    新浪：Motan</li>
+<li>​    当当网：DubboX</li>
+</ul>
+<h1 id="3、SpringCloud入门概述"><a href="#3、SpringCloud入门概述" class="headerlink" title="3、SpringCloud入门概述"></a>3、SpringCloud入门概述</h1><h2 id="3-1-SpringCloud是什么"><a href="#3-1-SpringCloud是什么" class="headerlink" title="3.1.SpringCloud是什么"></a>3.1.SpringCloud是什么</h2><p>Spring官网：<a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io/</a></p>
+<p>SpringCloud,基于SpringBoot提供了一套微服务解决方案，包括服务注册与发现，配置中心，全链路监控，服务网关，负载均衡，熔断器等组件，除了基于NetFlix的开源组件做高度抽象封装之外，还有一些选型中立的开源组件。</p>
+<p>SpringCloud利用SpringBoot的开发便利性，巧妙地简化了分布式系统基础设施的开发，SpringCloud为开发人员提供了快速构建分布式系统的一些工具，<strong>包括配置管理，服务发现，断路器，路由，微代理，事件总线，全局锁,决策竞选，分布式会话等等，</strong>他们都可以用SpringBoot的开发风格做到一键启动和部署。<br>SpringBoot并没有重复造轮子，它只是将目前各家公司开发的比较成熟，经得起实际考研的服务框架组合起来，通过SpringBoot风格进行再封装，屏蔽掉了复杂的配置和实现原理，<strong>最终给开发者留出了一套简单易懂，易部署和易维护的分布式系统开发工具包</strong></p>
+<p>SpringCloud是分布式微服务架构下的一站式解决方案，是各个微服务架构落地技术的集合体，俗称微服务全家桶。</p>
+<h2 id="3-2-SpringCloud和SpringBoot关系"><a href="#3-2-SpringCloud和SpringBoot关系" class="headerlink" title="3.2.SpringCloud和SpringBoot关系"></a>3.2.SpringCloud和SpringBoot关系</h2><p>●ISpringBoot专注于快速方便的开发单个个体微服务。<br>●SpringCloud是关注全局的微服务协调整理治理框架，它将SpringBoot开发的一 个个单体微服务整合并管理起<br>来，为各个微服务之间提供:配置管理，服务发现，断路器，路由，微代理，事件总线，全局锁，决策竞选,分布式会话等等集成服务。<br>●SpringBoot可以离开SpringClooud独立使用,开发项目,但是SpringCloud离不开SpringBoot, 属于依赖关系<br>●<strong>SpringBoot专注于快速、方便的开发单个个体微服务, SpringCloud关注全局的服务治理框架</strong></p>
+<h1 id="5、Eureka服务注册与发现"><a href="#5、Eureka服务注册与发现" class="headerlink" title="5、Eureka服务注册与发现"></a>5、Eureka服务注册与发现</h1><h2 id="5-1-什么是Eureka"><a href="#5-1-什么是Eureka" class="headerlink" title="5.1.什么是Eureka"></a>5.1.什么是Eureka</h2><ul>
+<li>Eureka:怎么读?</li>
+<li>Netflix在设计Eureka时，遵循的就是AP原则</li>
+<li>Eureka是Netflix的一个子模块，也是核心模块之一。Eureka是一个基于REST的服务，<code>用于定位服务，以实现云端中间层服务发现和故障转移</code>，服务注册与发现对于微服务来说是非常重要的，有了服务发现与注册，只需要使用服务的标识符，就可以访问到服务，而不需要修改服务调用的配置文件了，功能类似于Dubbo的注册中心，比如Zookeeper;</li>
+</ul>
+<h2 id="5-2-原理讲解"><a href="#5-2-原理讲解" class="headerlink" title="5.2.原理讲解"></a>5.2.原理讲解</h2><h3 id="5-2-1-Eureka的基本架构"><a href="#5-2-1-Eureka的基本架构" class="headerlink" title="5.2.1.Eureka的基本架构"></a>5.2.1.Eureka的基本架构</h3><ul>
+<li>SpringCloud封装了NetFlix公司开发的Eureka模块来实现服务注册和发现(对比Zookeeper)o Eureka采用了C-S的架构设计，EurekaServer作为服务注册功能的服务器，他是服务注册中心</li>
+<li>而系统中的其他微服务。使用Eureka的客户端连接到EurekaServer并维持心跳连接。这样系统的维护人员就可以通过EurekaServer来监控系统中各个微服务是否正常运行，SpringCloud的一些其他模块（比如Zuul）就可以通过EurekaServer来发现系统中的其他微服务，并执行相关的逻辑;</li>
+<li>和Dubbo架构对比</li>
+</ul>
+<h3 id="5-2-2-三大角色"><a href="#5-2-2-三大角色" class="headerlink" title="5.2.2.三大角色"></a>5.2.2.三大角色</h3><ul>
+<li>Eureka ServeF:提供服务的注册与发现。</li>
+<li>Service Provider:将自身服务注册到Eureka中，从而使消费方能够找到。</li>
+<li>Service Consumer:服务消费方从Eureka中获取注册服务列表，从而找到消费服务。</li>
+</ul>
+<p><strong>自我保护机制:好死不如赖活着</strong><br>一句话总结:某时刻某一个微服务不可以用了，eureka不会立刻清理，依旧会对该微服务的信息进行保存!<br>●默认情况下，如果EurekaServer在一 定时间内没有接收到某个微服务实例的心跳，EurekaServer将会注销该<br>实例(默认90秒)。但是当网络分区故障发生时，微服务与Eureka之间无法正常通行，以上行为可能变得非常危险了一因为微服务本身其实是健康的,此时本不应该注销这个服务。Eureka通过 自我保护机制来解决这个问题，当EurekaServer节点在短时间内丢失过多客户端时(可能发生了网络分区故障),那么这个节点就会进入自我保护模式。一旦进入该模式，EurekaServer就会保护服务注册表中的信息，不再删除服务注册表中的数据(也就是不会注销任何微服务)。当网络故障恢复后，该EurekaServer节 点会自动退出自我保护模式。<br>●在自我保护模式中，EurekaServer会保护服务注册表中的信息，不再注销任何服务实例。当它收到的心跳数<br>重新恢复到阈值以上时，该EurekaServer节 点就会自动退出自我保护模式。它的设计哲学就是宁可保留错误<br>的服务注册信息，也不盲目注销任何可能健康的服务实例。<strong>一句话:好死不如赖活着</strong><br>●综上，自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务(健康的<br>微服务和不健康的微服务都会保留)，也不盲目注销任何健康的微服务。使用自我保护模式，可以让Eureka集群更加的健壮和稳定<br>●在SpringCloud中， 可以使用<code>eureka. server . enable-self-preservation = false</code>禁用自我保护模式<br>[不推荐关闭自我保护机制]</p>
+<h3 id="作为服务注册中心，Eureka比zookeeper好在哪里"><a href="#作为服务注册中心，Eureka比zookeeper好在哪里" class="headerlink" title="作为服务注册中心，Eureka比zookeeper好在哪里?"></a><strong>作为服务注册中心，Eureka比zookeeper好在哪里?</strong></h3><p><strong>ACID是什么?</strong></p>
+<ul>
+<li>A (Atomicity)       原子性. </li>
+<li>C (Consistency)   一致性. </li>
+<li>l (lsolation)          隔离性.</li>
+<li>D (Durability)      持久性</li>
+</ul>
+<p><strong>CAP是什么?</strong></p>
+<ul>
+<li>C(Consistency)                   强一致性</li>
+<li>A (Availability)                    可用性</li>
+<li>P(Partition tolerance)       分区容错性</li>
+</ul>
+<p>CAP的三进二:CA、AP、CP</p>
+<p>著名的CAP理论指出，一个分布式系统不可能同时满足C(一致性)、A (可用性)、P(容错性)。由于分区容错性P在分布式系统中是必须要保证的，因此我们只能在A和C之间进行权衡。</p>
+<ul>
+<li>Zookeeper保证的是CP;</li>
+<li>Eureka保证的是AP;</li>
+</ul>
+<p><strong>Zookeeper保证的是CP</strong></p>
+<p>​        当向注册中心查询服务列表时，我们可以容忍注册中心返回的是几分钟以前的注册信息，但不能接受服务直接down掉不可用。也就是说，服务注册功能对可用性的要求要高于一致性。但是zk会出现这样一种情况，当master节点因为网络故障与其他节点失去联系时，剩余节点会重新进行leader选举。问题在于，选举leader的时间太长,30~120s，且选举期间整个zk集群都是不可用的，这就导致在选举期间注册服务瘫痪。在云部署的环境下，因为网络问题使得zk集群失去master节点是较大概率会发生的事件，虽然服务最终能够恢复，但是漫长的选举时间导致的注册长期不可用是不能容忍的。</p>
+<p><strong>Eureka保证的是AP</strong></p>
+<p>​        Eureka看明白了这一点，因此在设计时就优先保证可用性。Eureka各个节点都是平等的，几个节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka的客户端在向某个Eureka注册时，如果发现连接失败，则会自动切换至其他节点，只要有一台Eureka还在，就能保住注册服务的可用性，只不过查到的信息可能不是最新的，除此之外，Eureka还有一种自我保护机制，如果在15分钟内超过85%的节点都没有正常的心跳，那么Eureka就认为客户端与注册中心出现了网络故障，此时会出现以下几种情况:</p>
+<ol>
+<li><p>Eureka不再从注册列表中移除因为长时间没收到心跳而应该过期的服务</p>
+</li>
+<li><p>Eureka仍然能够接受新服务的注册和查询请求，但是不会被同步到其他节点上(即保证当前节点依然可用)3.当网络稳定时，当前实例新的注册信息会被同步到其他节点中</p>
+<p><strong>因此，Eureka可以很好的应对因网络故障导致部分节点失去联系的情况，而不会像zookeeper那样使整个注册服务瘫痪</strong></p>
+</li>
+</ol>
+<h1 id="6、Ribbon"><a href="#6、Ribbon" class="headerlink" title="6、Ribbon"></a>6、Ribbon</h1><h2 id="6-1-Ribbon简介"><a href="#6-1-Ribbon简介" class="headerlink" title="6.1.Ribbon简介"></a>6.1.Ribbon简介</h2><p><strong>ribbon是什么?</strong><br>        Spring Cloud Ribbon是基于Netflix Ribbon实现的==<strong>一套客户端负载均衡的工具</strong>==。<br>        简单的说，Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件负载均衡算法，将NetFlix的中间层服务连接在一起。Ribbon的客户端组件提供一系列完整的配置项如:连接超时、重试等等。简单的说，就是在配置文件中列出LoadBalancer(简称LB:负载均衡）后面所有的机器，Ribbon会自动的帮助你基于某种规则(如简单轮询，随机连接等等）去连接这些机器。我们也很容易使用Ribbon实现自定义的负载均衡算法!</p>
+<p><strong>ribbon能干嘛?</strong></p>
+<ul>
+<li>LB，即负载均衡(Load Balance)，在微服务或分布式集群中经常用的一种应用。</li>
+<li>负载均衡简单的说就是将用户的请求平摊的分配到多个服务上，从而达到系统的HA（高可用)。</li>
+<li>常见的负载均衡软件有Nginx，Lvs等等</li>
+<li>dubbo、SpringCloud中均给我们提供了负载均衡，SpringCloud的负载均衡算法可以自定义</li>
+<li>负载均衡简单分类:</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/06/01/Springcloud%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Springcloud面试题
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/11/09/%E5%B8%B8%E8%A7%81%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">常见经典排序</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "ro9ik0ujr5xEuCjVNSOaDGX0-gzGzoHsz",
+    app_key: "5TUjb1R3rddvH9AXsn1OAIDP",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2022
+        <i class="ri-heart-fill heart_icon"></i> wesker
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/wei.ico" alt="wesker&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
