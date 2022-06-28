@@ -845,284 +845,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis</title>
-    <url>/2022/06/23/Redis/</url>
-    <content><![CDATA[<h1 id="Redis入门"><a href="#Redis入门" class="headerlink" title="Redis入门"></a>Redis入门</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p>Redis是什么</p>
-</blockquote>
-<p>Redis（Remote Dictionary Server )，即==远程字典服务==，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦==可持久化==的日志型、Key-Value数据库，并提供多种语言的API。也被人们称之为结构化数据库</p>
-<p>—来自<a href="https://baike.baidu.com/item/Redis">百度百科</a></p>
-<blockquote>
-<p>Redis能干嘛</p>
-</blockquote>
-<p>1、内存存储、持久化（rdb，aof）</p>
-<p>2、效率高，可以用于告诉缓存</p>
-<p>3、发布订阅系统</p>
-<p>4、地图信息分析</p>
-<p>5、计时器、计数器（浏览量）</p>
-<p>6、。。。</p>
-<blockquote>
-<p>特性</p>
-</blockquote>
-<p>1、多样的数据类型</p>
-<p>2、持久化</p>
-<p>3、集群</p>
-<p>4、事物</p>
-<blockquote>
-<p>学习Redis需要的东西</p>
-</blockquote>
-<p>1、狂神公众号</p>
-<p>2、官网：<a href="https://redis.io/">https://redis.io/</a></p>
-<p>3、中文网：<a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-<h2 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h2><p>1、下载安装包</p>
-<p><a href="https://github.com/microsoftarchive/redis/releases">https://github.com/microsoftarchive/redis/releases</a></p>
-<p><img src="/2022/06/23/Redis/image-20220625205058175.png" alt="image-20220625205058175"></p>
-<p>2、解压</p>
-<p><img src="/2022/06/23/Redis/image-20220625205150113.png" alt="image-20220625205150113"></p>
-<p>3、开启Redis，双击redis-server.exe即可</p>
-<p><img src="/2022/06/23/Redis/image-20220625205407530.png" alt="image-20220625205407530"></p>
-<p>4、使用客户端连接Redis</p>
-<p><img src="/2022/06/23/Redis/image-20220625205546630.png" alt="image-20220625205546630"></p>
-<p>测试连接：</p>
-<p><img src="/2022/06/23/Redis/image-20220625210004502.png" alt="image-20220625210004502"></p>
-<p>windows下使用很简单，但是Redis建议使用Linux来使用—-来自<a href="http://www.redis.cn/topics/introduction">Redis介绍</a></p>
-<p><img src="/2022/06/23/Redis/image-20220625210347560.png" alt="image-20220625210347560"></p>
-<h2 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h2><p>1、下载安装包<a href="https://download.redis.io/releases/">https://download.redis.io/releases/</a></p>
-<p>2、解压Redis安装包，一般放到opt目录下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost opt]# tar -zxvf redis-5.0.8.tar.gz <br><br>[root@localhost opt]# ls<br>redis-5.0.8  redis-5.0.8.tar.gz<br></code></pre></td></tr></table></figure>
-
-<p>3、进入解压后的文件</p>
-<p><img src="/2022/06/23/Redis/image-20220625213922391.png" alt="image-20220625213922391"></p>
-<p>4、安装基本环境</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost redis-5.0.8]# yum install gcc c++<br><br>make<br><br>make install<br></code></pre></td></tr></table></figure>
-
-<p>5、Redis默认安装路径<code>/usr/local/bin</code></p>
-<p><img src="/2022/06/23/Redis/image-20220625215239887.png" alt="image-20220625215239887"></p>
-<p>6、将Redis配置文件复制到当前目录下</p>
-<p><img src="/2022/06/23/Redis/image-20220625221034083.png" alt="image-20220625221034083"></p>
-<p>7、Redis默认不是后台启动，我们需要配置conf文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# vim wconfig/redis.conf <br></code></pre></td></tr></table></figure>
-
-<p><img src="/2022/06/23/Redis/image-20220625221327016.png" alt="image-20220625221327016"></p>
-<p>8、启动服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# redis-server wconfig/redis.conf <br></code></pre></td></tr></table></figure>
-
-<p><img src="/2022/06/23/Redis/image-20220625221703754.png" alt="image-20220625221703754"></p>
-<p>9、启动客户端，连接服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# redis-cli -p 6379			#6379<br>127.0.0.1:6379&gt; ping		#测试<br>PONG<br>127.0.0.1:6379&gt; set name wesker<br>OK<br>127.0.0.1:6379&gt; get name<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; keys *		#查看所有的key<br>1) &quot;name&quot;<br></code></pre></td></tr></table></figure>
-
-<p>10、查看Redis的进程是否开启</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs SHELL">[root@localhost bin]# ps -ef|grep redis<br>root      16171      1  0 22:16 ?        00:00:07 redis-server 127.0.0.1:6379<br>root      16422   2345  0 22:32 pts/0    00:00:00 redis-cli -p 6379<br>root      16603  16554  0 22:44 pts/1    00:00:00 grep --color=auto redis<br></code></pre></td></tr></table></figure>
-
-<p>11、如何关闭Redis服务？</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; shutdown	#关闭Redis<br>not connected&gt; exit			#退出<br>[root@localhost bin]# ps -ef|grep redis		#再次查看进程<br>root      16636  16554  0 22:47 pts/1    00:00:00 grep --color=auto redis<br>[root@localhost bin]# <br></code></pre></td></tr></table></figure>
-
-<h2 id="测试性能"><a href="#测试性能" class="headerlink" title="测试性能"></a>测试性能</h2><p><strong>redis-benchmark</strong></p>
-<p>官方自带的性能测试参数</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# ll<br>总用量 32776<br>-rw-r--r-- 1 root root     110 6月  25 22:46 dump.rdb<br>-rwxr-xr-x 1 root root 4366856 6月  25 22:05 redis-benchmark<br>-rwxr-xr-x 1 root root 8125048 6月  25 22:05 redis-check-aof<br>-rwxr-xr-x 1 root root 8125048 6月  25 22:05 redis-check-rdb<br>-rwxr-xr-x 1 root root 4807840 6月  25 22:05 redis-cli<br>lrwxrwxrwx 1 root root      12 6月  25 22:05 redis-sentinel -&gt; redis-server<br>-rwxr-xr-x 1 root root 8125048 6月  25 22:05 redis-server<br>drwxr-xr-x 2 root root      24 6月  25 22:13 wconfig<br></code></pre></td></tr></table></figure>
-
-<p>性能测试可选参数如下：</p>
-<table>
-<thead>
-<tr>
-<th>序号</th>
-<th>选项</th>
-<th>描述</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td><strong>-h</strong></td>
-<td>指定服务器主机名</td>
-<td>127.0.0.1</td>
-</tr>
-<tr>
-<td>2</td>
-<td><strong>-p</strong></td>
-<td>指定服务器端口</td>
-<td>6379</td>
-</tr>
-<tr>
-<td>3</td>
-<td><strong>-s</strong></td>
-<td>指定服务器 socket</td>
-<td></td>
-</tr>
-<tr>
-<td>4</td>
-<td><strong>-c</strong></td>
-<td>指定并发连接数</td>
-<td>50</td>
-</tr>
-<tr>
-<td>5</td>
-<td><strong>-n</strong></td>
-<td>指定请求数</td>
-<td>10000</td>
-</tr>
-<tr>
-<td>6</td>
-<td><strong>-d</strong></td>
-<td>以字节的形式指定 SET/GET 值的数据大小</td>
-<td>2</td>
-</tr>
-<tr>
-<td>7</td>
-<td><strong>-k</strong></td>
-<td>1=keep alive 0=reconnect</td>
-<td>1</td>
-</tr>
-<tr>
-<td>8</td>
-<td><strong>-r</strong></td>
-<td>SET/GET/INCR 使用随机 key, SADD 使用随机值</td>
-<td></td>
-</tr>
-<tr>
-<td>9</td>
-<td><strong>-P</strong></td>
-<td>通过管道传输 <numreq> 请求</numreq></td>
-<td>1</td>
-</tr>
-<tr>
-<td>10</td>
-<td><strong>-q</strong></td>
-<td>强制退出 redis。仅显示 query/sec 值</td>
-<td></td>
-</tr>
-<tr>
-<td>11</td>
-<td><strong>–csv</strong></td>
-<td>以 CSV 格式输出</td>
-<td></td>
-</tr>
-<tr>
-<td>12</td>
-<td>***-l*（L 的小写字母）**</td>
-<td>生成循环，永久执行测试</td>
-<td></td>
-</tr>
-<tr>
-<td>13</td>
-<td><strong>-t</strong></td>
-<td>仅运行以逗号分隔的测试命令列表。</td>
-<td></td>
-</tr>
-<tr>
-<td>14</td>
-<td>***-I*（i 的大写字母）**</td>
-<td>Idle 模式。仅打开 N 个 idle 连接并等待。</td>
-<td></td>
-</tr>
-</tbody></table>
-<p>​                                                                        —–来自<a href="https://www.runoob.com/redis/redis-benchmarks.html">菜鸟教程</a></p>
-<p><strong>测试</strong></p>
-<p>100个并发，10000个请求（默认是50个并发，10000个请求）</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# redis-benchmark -h localhost -p 6379 -c 100  -n 100000<br></code></pre></td></tr></table></figure>
-
-<p><img src="/2022/06/23/Redis/image-20220626134400163.png" alt="image-20220626134400163"></p>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>Redis默认有16个数据库</p>
-<p><img src="/2022/06/23/Redis/image-20220626134755958.png" alt="image-20220626134755958"></p>
-<p>默认使用的是第0个数据库</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; select 3		#选择第三个数据库<br>OK<br>127.0.0.1:6379[3]&gt; dbsize			#查看当前数据库大小<br>(integer) 0<br>127.0.0.1:6379[3]&gt; set name wei		<br>OK<br>127.0.0.1:6379[3]&gt; select 5<br>OK<br>127.0.0.1:6379[5]&gt; get name<br>(nil)<br>127.0.0.1:6379[5]&gt; select 3<br>OK<br>127.0.0.1:6379[3]&gt; get name<br>&quot;wei&quot;<br>127.0.0.1:6379[3]&gt; dbsize<br>(integer) 1<br>127.0.0.1:6379[3]&gt; keys *		#查看当前数据库所有的key<br>1) &quot;name&quot;<br>127.0.0.1:6379[3]&gt; flushdb		#清空当前数据库<br>OK<br>127.0.0.1:6379[3]&gt; keys *<br>(empty list or set)<br>127.0.0.1:6379[3]&gt; select 0		#切换0号数据库<br>OK<br>127.0.0.1:6379&gt; set name wesker		#设置name为wesker<br>OK<br>127.0.0.1:6379&gt; keys *		#查看当前数据库所有的key<br>1) &quot;name&quot;<br>127.0.0.1:6379&gt; select 3 	#切换回3号数据库<br>OK<br>127.0.0.1:6379[3]&gt; flushall		#执行flush命令（清空所有数据库）<br>OK<br>127.0.0.1:6379[3]&gt; select 0		#切换回0号数据库<br>OK<br>127.0.0.1:6379&gt; keys *		#查看所有的key<br>(empty list or set)		#显示为空<br>127.0.0.1:6379&gt; <br></code></pre></td></tr></table></figure>
-
-<p>为什么端口号是6379？明星名字九宫格对应的数字6379</p>
-<blockquote>
-<p>Redis是单线程的</p>
-</blockquote>
-<p>Redis很快的，基于内存操作，CPU不是Redis的性能瓶颈，而是机器的内存和带宽，既然能够使用单线程来实现所以就是用了单线程</p>
-<p><strong>Redis单线程为什么这么快？</strong></p>
-<p> 1、误区1：高性能的服务器一定是多线程的</p>
-<p>2、误区2：多线程（CPU上下文会切换，耗时间）一定必单线程效率高</p>
-<p>核心：Redis是将所有的数据放在内存中的，所以说使用单线程操作效率就是最高的，对于内存系统来说，如果没有上下文切换效率就是最高的，多次读写都是在一个CPU上的，在内存情况下，这个方案就是最佳的</p>
-<h1 id="五大数据类型"><a href="#五大数据类型" class="headerlink" title="五大数据类型"></a>五大数据类型</h1><p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。 </p>
-<h2 id="Redis-key"><a href="#Redis-key" class="headerlink" title="Redis-key"></a>Redis-key</h2><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; set name wesker				#设置name 值为wesker<br>OK<br>127.0.0.1:6379&gt; set age 18					#设置age 值为18<br>OK<br>127.0.0.1:6379&gt; keys *						#查询所有的key<br>1) &quot;age&quot;<br>2) &quot;name&quot;<br><br>127.0.0.1:6379&gt; move age 1					#移除一个指定的key<br>(integer) 1<br>127.0.0.1:6379&gt; keys *				<br>1) &quot;name&quot;<br>127.0.0.1:6379&gt; EXISTS name					#查询是否存在指定的key<br>(integer) 1									#返回1表示存在<br>127.0.0.1:6379&gt; EXISTS name1<br>(integer) 0									#返回0便是不存在<br>127.0.0.1:6379&gt; EXPIRE name 10				#设置指定的key的过期时间，单位为秒<br>(integer) 1<br>127.0.0.1:6379&gt; TTL name					#查看指定key的剩余时间<br>(integer) -2								#负数代表已经过期<br>127.0.0.1:6379&gt; keys *<br>(empty list or set)<br>127.0.0.1:6379&gt; set name wesker<br>OK<br>127.0.0.1:6379&gt; TYPE name					#查看指定键的类型<br>string<br>127.0.0.1:6379&gt; <br></code></pre></td></tr></table></figure>
-
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>String(字符串)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> k1 hello				<span class="hljs-comment">#设置键值对，key为k1,value为hello</span><br>OK<br>127.0.0.1:6379&gt; KEYS *						<span class="hljs-comment">#查看所有的key</span><br>1) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; get k1						<span class="hljs-comment">#通过指定的key获取value</span><br><span class="hljs-string">&quot;hello&quot;</span><br>127.0.0.1:6379&gt; EXISTS k1					<span class="hljs-comment">#查询指定的key是否存在</span><br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; APPEND k1 <span class="hljs-string">&quot;,hello&quot;</span>			<span class="hljs-comment">#通过指定的key在value后追加内容，返回字符串长度</span><br>(<span class="hljs-built_in">integer</span>) 11<br>127.0.0.1:6379&gt; get k1<br><span class="hljs-string">&quot;hello,hello&quot;</span><br>127.0.0.1:6379&gt; STRLEN k1					<span class="hljs-comment">#查询指定key的value的长度</span><br>(<span class="hljs-built_in">integer</span>) 11<br>127.0.0.1:6379&gt; APPEND k1 <span class="hljs-string">&quot;,world&quot;</span><br>(<span class="hljs-built_in">integer</span>) 17<br>127.0.0.1:6379&gt; get k1<br><span class="hljs-string">&quot;hello,hello,world&quot;</span><br>127.0.0.1:6379&gt; KEYS *<br>1) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; APPEND k2 <span class="hljs-string">&quot;hello world&quot;</span>		<span class="hljs-comment">#如果不存在指定的key，则相当于set</span><br>(<span class="hljs-built_in">integer</span>) 11<br>127.0.0.1:6379&gt; keys *<br>1) <span class="hljs-string">&quot;k2&quot;</span><br>2) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> views 0					<span class="hljs-comment">#创建views</span><br>OK<br>127.0.0.1:6379&gt; TYPE views					<span class="hljs-comment">#查看类型</span><br>string<br>127.0.0.1:6379&gt; incr views					<span class="hljs-comment">#执行一次自增1，类似i++</span><br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; incr views<br>(<span class="hljs-built_in">integer</span>) 2<br>127.0.0.1:6379&gt; incr views<br>(<span class="hljs-built_in">integer</span>) 3<br>127.0.0.1:6379&gt; decr views					<span class="hljs-comment">#执行一次自减1</span><br>(<span class="hljs-built_in">integer</span>) 3<br>127.0.0.1:6379&gt; decr views<br>(<span class="hljs-built_in">integer</span>) 2<br>127.0.0.1:6379&gt; decr views<br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; INCRBY views 10				<span class="hljs-comment">#自增，步长为10</span><br>(<span class="hljs-built_in">integer</span>) 10<br>127.0.0.1:6379&gt; INCRBY views 10<br>(<span class="hljs-built_in">integer</span>) 20<br>127.0.0.1:6379&gt; DECRBY views 5				<span class="hljs-comment">#自减，步长为5</span><br>(<span class="hljs-built_in">integer</span>) 15<br>127.0.0.1:6379&gt; DECRBY views 5<br>(<span class="hljs-built_in">integer</span>) 10<br><br><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> key1 <span class="hljs-string">&quot;hello,wesker&quot;</span>		<br>OK<br>127.0.0.1:6379&gt; get key1<br><span class="hljs-string">&quot;hello,wesker&quot;</span><br>127.0.0.1:6379&gt; GETRANGE key1 0 5			<span class="hljs-comment">#截取第0个到第5个字符的字符串[0,5]</span><br><span class="hljs-string">&quot;hello,&quot;</span><br>127.0.0.1:6379&gt; GETRANGE key1 0 -1			<span class="hljs-comment">#获取所有字符串</span><br><span class="hljs-string">&quot;hello,wesker&quot;</span><br><br><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> key2 abcdef<br>OK<br>127.0.0.1:6379&gt; get key2<br><span class="hljs-string">&quot;abcdef&quot;</span><br>127.0.0.1:6379&gt; SETRANGE key2 1 xx			<span class="hljs-comment">#将第1个字符的位置换位xx</span><br>(<span class="hljs-built_in">integer</span>) 6<br>127.0.0.1:6379&gt; get key2<br><span class="hljs-string">&quot;axxdef&quot;</span><br><br><span class="hljs-comment">#setex(set with expire)  设置过期时间</span><br><span class="hljs-comment">#setnx(set if not exist) 如果不存在再设置</span><br>127.0.0.1:6379&gt; setex key3 30 wesker		<span class="hljs-comment">#设置过期时间30秒</span><br>OK<br>127.0.0.1:6379&gt; ttl key3					<span class="hljs-comment">#查看剩余时间</span><br>(<span class="hljs-built_in">integer</span>) 17<br>127.0.0.1:6379&gt; setnx key4 <span class="hljs-string">&quot;radis&quot;</span>			<span class="hljs-comment">#如果不存在该key，则设置</span><br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; get key4<br><span class="hljs-string">&quot;radis&quot;</span><br>127.0.0.1:6379&gt; setnx key4 <span class="hljs-string">&quot;mongoDB&quot;</span>		<span class="hljs-comment">#已存在该key，返回值是0</span><br>(<span class="hljs-built_in">integer</span>) 0<br><br><br><br>127.0.0.1:6379&gt; mset k1 v1 k2 v2 k3 v3      <span class="hljs-comment">#一次性设置多个键值对</span><br>OK<br>127.0.0.1:6379&gt; keys *<br>1) <span class="hljs-string">&quot;k2&quot;</span><br>2) <span class="hljs-string">&quot;k3&quot;</span><br>3) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; get k2<br><span class="hljs-string">&quot;v2&quot;</span><br>127.0.0.1:6379&gt; mget k1 k2 					<span class="hljs-comment">#一次性根据多个key获取value</span><br>1) <span class="hljs-string">&quot;v1&quot;</span><br>2) <span class="hljs-string">&quot;v2&quot;</span><br>127.0.0.1:6379&gt; msetnx k1 v1 k4 v4			<span class="hljs-comment">#如果不存在再创建</span><br>(<span class="hljs-built_in">integer</span>) 0<br>127.0.0.1:6379&gt; get k4<br>(nil)<br><br><br><span class="hljs-comment">#创建对象</span><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> user:1 &#123;name:wesker,age:18&#125; <span class="hljs-comment">#设置键值对，key为user：1，value为JSON字符串，值为&#123;name:wesker,age:18&#125;</span><br><br><br>127.0.0.1:6379&gt; mset user:1:name wesker user:1:age 22<br>OK<br>127.0.0.1:6379&gt; mget user:1:name<br>1) <span class="hljs-string">&quot;wesker&quot;</span><br><br><br>127.0.0.1:6379&gt; getset k1 redis				<span class="hljs-comment">#先获取原来的值，再设置新的值，如果没有则返回nil</span><br>(nil)<br>127.0.0.1:6379&gt; getset k1 mongoDB<br><span class="hljs-string">&quot;redis&quot;</span><br>127.0.0.1:6379&gt; get k1<br><span class="hljs-string">&quot;mongoDB&quot;</span><br><br></code></pre></td></tr></table></figure>
-
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>在Redis里面，可以把list玩成栈，队列、阻塞队列</p>
-<p>list所有的命令都是以l开头的</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; LPUSH list one			#将一个值或者多个值放在列表头部（左边）<br>(integer) 1<br>127.0.0.1:6379&gt; LPUSH list two<br>(integer) 2<br>127.0.0.1:6379&gt; LPUSH list three<br>(integer) 3<br>127.0.0.1:6379&gt; LRANGE list 0 -1		#根据区间获取list中具体的值<br>1) &quot;three&quot;<br>2) &quot;two&quot;<br>3) &quot;one&quot;<br>127.0.0.1:6379&gt; LRANGE list 0 1			#倒着存的<br>1) &quot;three&quot;<br>2) &quot;two&quot;<br><br><br>127.0.0.1:6379&gt; RPUSH list right		#将一个值或者多个值放在列表尾部部（右边）<br>(integer) 4<br>127.0.0.1:6379&gt; keys *<br>1) &quot;list&quot;<br>127.0.0.1:6379&gt; get list<br>(error) WRONGTYPE Operation against a key holding the wrong kind of value<br>127.0.0.1:6379&gt; LRANGE list<br>(error) ERR wrong number of arguments for &#x27;lrange&#x27; command<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;two&quot;<br>3) &quot;one&quot;<br>4) &quot;right&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">删除元素</span><br>127.0.0.1:6379&gt; lpop list		#删除左边一个元素<br>&quot;three&quot;<br>127.0.0.1:6379&gt; rpop list		#删除右边一个元素<br>&quot;right&quot;<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;two&quot;<br>2) &quot;one&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据下标获取元素</span><br>127.0.0.1:6379&gt; lindex list 0<br>&quot;two&quot;<br>127.0.0.1:6379&gt; lindex list 1<br>&quot;one&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">获取list的长度</span><br>127.0.0.1:6379&gt; LPUSH list one<br>(integer) 1<br>127.0.0.1:6379&gt; LPUSH list two<br>(integer) 2<br>127.0.0.1:6379&gt; LPUSH list three<br>(integer) 3<br>127.0.0.1:6379&gt; llen list<br>(integer) 3<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">移除指定list中的值</span><br>127.0.0.1:6379&gt; LPUSH list three			#再添加一个three<br>(integer) 4<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;three&quot;<br>3) &quot;two&quot;<br>4) &quot;one&quot;<br>127.0.0.1:6379&gt; lrem list 1 one				#删除一个key为list的集合中值为one的元素<br>(integer) 1<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;three&quot;<br>3) &quot;two&quot;<br>127.0.0.1:6379&gt; lrem list 2 two				#删除两个key为list的集合中值为two的元素<br>(integer) 1<br>127.0.0.1:6379&gt; lrem list 2 two			#list只有一个two，删除两个，和删除一个的命令效果一样<br>(integer) 0<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;three&quot;<br>127.0.0.1:6379&gt; lrem list 2 three			##删除两个key为list的集合中值为three的元素<br>(integer) 2<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>(empty list or set)<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据下标截取指定的list中的value，闭区间</span><br>127.0.0.1:6379&gt; RPUSH mylist helllo1<br>(integer) 1<br>127.0.0.1:6379&gt; RPUSH mylist helllo2<br>(integer) 2<br>127.0.0.1:6379&gt; RPUSH mylist helllo3<br>(integer) 3<br>127.0.0.1:6379&gt; RPUSH mylist helllo4<br>(integer) 4<br>127.0.0.1:6379&gt; LTRIM mylist 1 2		#截取第1个到第2个元素，list已经被修改<br>OK<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;helllo2&quot;<br>2) &quot;helllo3&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">移除列表最后一个元素（从左到右），并将这个元素移到一个新的list中</span><br>127.0.0.1:6379&gt; LRANGE mylist 0 -1		<br>1) &quot;one&quot;<br>2) &quot;two&quot;<br>3) &quot;three&quot;<br>127.0.0.1:6379&gt; RPOPLPUSH mylist mynewlist<br>&quot;three&quot;<br>127.0.0.1:6379&gt; keys *		#创建了名为mynewlist的新list<br>1) &quot;mynewlist&quot;<br>2) &quot;mylist&quot;<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1		#查看原来的list<br>1) &quot;one&quot;<br>2) &quot;two&quot;<br>127.0.0.1:6379&gt; LRANGE mynewlist 0 -1		#查看新的list<br>1) &quot;three&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据下标更新指定list中的值</span><br>127.0.0.1:6379&gt; EXISTS mylist			#查看是否存在指定的list<br>(integer) 0<br>127.0.0.1:6379&gt; LSET mylist 0 newvalue	#如果不存在执行lset就会报错<br>(error) ERR no such key<br>127.0.0.1:6379&gt; LPUSH mylist value1		#先往list中添加元素<br>(integer) 1<br>127.0.0.1:6379&gt; LPUSH mylist value2<br>(integer) 2<br>127.0.0.1:6379&gt; LSET mylist 0 newvalue1	#修改第0个元素的值，newvalue<br>OK<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1		#查看list所有的值<br>1) &quot;newvalue1&quot;<br>2) &quot;value1&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">在指定的list中的指定value前面或是后面插入一个值</span><br>127.0.0.1:6379&gt; RPUSH mylist hello<br>(integer) 1<br>127.0.0.1:6379&gt; RPUSH mylist world<br>(integer) 2<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;hello&quot;<br>2) &quot;world&quot;<br>127.0.0.1:6379&gt; LINSERT mylist before world my #在“world”前面添加一个值，my<br>(integer) 3<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;hello&quot;<br>2) &quot;my&quot;<br>3) &quot;world&quot;<br>127.0.0.1:6379&gt; LINSERT mylist after  hello &quot;welcome to&quot; 	#在“hello”后面添加一个值<br>(integer) 4<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;hello&quot;<br>2) &quot;welcome to&quot;<br>3) &quot;my&quot;<br>4) &quot;world&quot;<br><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>小结</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>lpush key value [value …]</td>
-<td>从左边依次往list中存放元素</td>
-</tr>
-<tr>
-<td>rpush key value [value …]</td>
-<td>从右边依次往list中存放元素</td>
-</tr>
-<tr>
-<td>lrange key start stop</td>
-<td>根据索引范围获取list中对应的元素</td>
-</tr>
-<tr>
-<td>lpop key</td>
-<td>删除最左边的一个元素</td>
-</tr>
-<tr>
-<td>rpop</td>
-<td>删除最右边的一个元素</td>
-</tr>
-<tr>
-<td>lindex key index</td>
-<td>根据下标获取元素</td>
-</tr>
-<tr>
-<td>llen key</td>
-<td>获取list长度</td>
-</tr>
-<tr>
-<td>lrem key count value</td>
-<td>删除指定list中的值，count表示删除的数量</td>
-</tr>
-<tr>
-<td>ltrim key start stop</td>
-<td>根据索引范围截取指定的list中的值，原来的list修改</td>
-</tr>
-<tr>
-<td>RPOPLPUSH source destination</td>
-<td>移除列表最后一个元素（从左到右），并将这个元素移到一个新的list中</td>
-</tr>
-<tr>
-<td>LSET key index value</td>
-<td>根据下标更新指定list中的值</td>
-</tr>
-<tr>
-<td>linsert key before|after pivot value</td>
-<td>在指定的list中的指定value前面或是后面插入一个值</td>
-</tr>
-</tbody></table>
-<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>set中的值不能重复</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; sadd myset hello			#set集合中添加元素<br>(integer) 1<br>127.0.0.1:6379&gt; sadd myset world<br>(integer) 1<br>127.0.0.1:6379&gt; SMEMBERS myset				#查看set的所有元素<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br>127.0.0.1:6379&gt; SISMEMBER myset hello		#判断set中是否存在某个元素<br>(integer) 1<br>127.0.0.1:6379&gt; SISMEMBER myset wesker<br>(integer) 0<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">获取指定<span class="hljs-built_in">set</span>的元素个数</span><br>127.0.0.1:6379&gt; SCARD myset<br>(integer) 2<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">删除指定<span class="hljs-built_in">set</span>中的元素</span><br>127.0.0.1:6379&gt; SREM myset hello<br>(integer) 1<br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">随机获取<span class="hljs-built_in">set</span>中的元素，默认一个</span><br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br>3) &quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;world&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;hello&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset 2		#指定随机获取两个元素<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">删除指定的元素，随机删除</span><br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br>3) &quot;wesker&quot;<br>127.0.0.1:6379&gt; SPOP myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SPOP myset<br>&quot;world&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">将一个指定的值移动到另一个<span class="hljs-built_in">set</span>集合中</span><br>127.0.0.1:6379&gt; sadd myset world wesker tom	#同时添加多个元素<br>(integer) 3<br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br>2) &quot;tom&quot;<br>3) &quot;hello&quot;<br>4) &quot;wesker&quot;<br>127.0.0.1:6379&gt; sadd mynewset newset	#新增一个新的set，并添加一个元素newset<br>(integer) 1<br>127.0.0.1:6379&gt; SMOVE myset mynewset wesker	#将一个指定的值移动到另一个set集合中<br>(integer) 1<br>127.0.0.1:6379&gt; SMEMBERS mynewset<br>1) &quot;newset&quot;<br>2) &quot;wesker&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">差集，交集，并集</span><br>127.0.0.1:6379&gt; SMEMBERS set1<br>1) &quot;c&quot;<br>2) &quot;d&quot;<br>3) &quot;b&quot;<br>4) &quot;a&quot;<br>127.0.0.1:6379&gt; SMEMBERS set2<br>1) &quot;d&quot;<br>2) &quot;e&quot;<br>3) &quot;b&quot;<br>127.0.0.1:6379&gt; SDIFF set1 set2			#取差集<br>1) &quot;c&quot;<br>2) &quot;a&quot;<br>127.0.0.1:6379&gt; SINTER set1 set2		#取交集<br>1) &quot;d&quot;<br>2) &quot;b&quot;<br>127.0.0.1:6379&gt; SUNION set1 set2		#取并集<br>1) &quot;b&quot;<br>2) &quot;a&quot;<br>3) &quot;e&quot;<br>4) &quot;c&quot;<br>5) &quot;d&quot;<br></code></pre></td></tr></table></figure>
-
-<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p>hash里面存的也是value，只是value对应的是map集合，key-map，本质和string没有太大区别</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; hset myhash key1 value1	#创建名为myhash的hash，添加一个键值对<br>(integer) 1<br>127.0.0.1:6379&gt; hget myhash key1<br>&quot;value1&quot;<br>127.0.0.1:6379&gt; hset myhash key2 value2<br>(integer) 1<br>127.0.0.1:6379&gt; hset myhash key3 value3<br>(integer) 1<br>127.0.0.1:6379&gt; hmset myhash key4 value4 key5 value5 key6 value6	#往hash里添加多个键值对<br>OK<br>127.0.0.1:6379&gt; hmget myhash key4 key5		#获取指定hash中的多个key指定的value<br>1) &quot;value4&quot;<br>2) &quot;value5&quot;<br>127.0.0.1:6379&gt; hgetall myhash			#获取指定hash的所有key和value<br> 1) &quot;key1&quot;<br> 2) &quot;value1&quot;<br> 3) &quot;key2&quot;<br> 4) &quot;value2&quot;<br> 5) &quot;key3&quot;<br> 6) &quot;value3&quot;<br> 7) &quot;key4&quot;<br> 8) &quot;value4&quot;<br> 9) &quot;key5&quot;<br>10) &quot;value5&quot;<br>11) &quot;key6&quot;<br>12) &quot;value6&quot;<br>127.0.0.1:6379&gt; hdel myhash key1 key2	#删除指定hash内的键值对，也删除了对应的value<br>(integer) 2<br>127.0.0.1:6379&gt; hgetall myhash<br>1) &quot;key3&quot;<br>2) &quot;value3&quot;<br>3) &quot;key4&quot;<br>4) &quot;value4&quot;<br>5) &quot;key5&quot;<br>6) &quot;value5&quot;<br>7) &quot;key6&quot;<br>8) &quot;value6&quot;<br>127.0.0.1:6379&gt; HLEN myhash			#获取指定hash的长度<br>(integer) 4<br>127.0.0.1:6379&gt; HEXISTS myhash key3		#判断是否存在某个值<br>(integer) 1<br>127.0.0.1:6379&gt; HEXISTS myhash key1<br>(integer) 0<br>127.0.0.1:6379&gt; hkeys myhash	#根据hash的key查询该hash内的所有字段（map里面的key）<br>1) &quot;field1&quot;<br>2) &quot;field2&quot;<br>3) &quot;field3&quot;<br>127.0.0.1:6379&gt; hvals myhash	#根据hash的key查询该hash内的所有value<br>1) &quot;value1&quot;<br>2) &quot;value2&quot;<br>3) &quot;value3&quot;<br><br><br><br>127.0.0.1:6379&gt; hset myhash field 3<br>(integer) 1<br>127.0.0.1:6379&gt; HINCRBY myhash field 1		#自增<br>(integer) 4<br>127.0.0.1:6379&gt; HINCRBY myhash field 2<br>(integer) 6<br>127.0.0.1:6379&gt; HINCRBY myhash field 1<br>(integer) 7<br>127.0.0.1:6379&gt; HINCRBY myhash field -1<br>(integer) 6<br>127.0.0.1:6379&gt; hsetnx myhash field1 value2		#如果不存在则可以设置<br>(integer) 1<br>127.0.0.1:6379&gt; hsetnx myhash field value2		#如果存在则可以设置<br>(integer) 0<br><br></code></pre></td></tr></table></figure>
-
-<h2 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h2><p>有序集合，在set的集合上，增加了一个值</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; zadd myzset 1 one				#添加一个一个值<br>(integer) 1<br>127.0.0.1:6379&gt; zadd myzset 2 two 3 three		#添加多个值<br>(integer) 2<br>127.0.0.1:6379&gt; ZRANGE myzset 0 -1<br>1) &quot;one&quot;<br>2) &quot;two&quot;<br>3) &quot;three&quot;<br><br><br><br>127.0.0.1:6379&gt; zadd salary 5000 wekser		#添加三个值<br>(integer) 1<br>127.0.0.1:6379&gt; zadd salary 5100 tom<br>(integer) 1<br>127.0.0.1:6379&gt; zadd salary 4800 kitty<br>(integer) 1<br>127.0.0.1:6379&gt; zadd salary 5100 bob<br>(integer) 1<br>127.0.0.1:6379&gt; ZRANGE salary 0 -1		#显示所有用户<br>1) &quot;kitty&quot;<br>2) &quot;wekser&quot;<br>3) &quot;bob&quot;<br>4) &quot;tom&quot;<br><br>127.0.0.1:6379&gt; ZRANGEBYSCORE salary -inf +inf		#显示从小到大<br>1) &quot;kitty&quot;<br>2) &quot;wekser&quot;<br>3) &quot;bob&quot;<br>4) &quot;tom&quot;<br><br>127.0.0.1:6379&gt; ZRANGEBYSCORE salary -inf +inf withscores	#显示从小到大，带score<br>1) &quot;kitty&quot;<br>2) &quot;4800&quot;<br>3) &quot;wekser&quot;<br>4) &quot;5000&quot;<br>5) &quot;bob&quot;<br>6) &quot;5100&quot;<br>7) &quot;tom&quot;<br>8) &quot;5100&quot;<br>127.0.0.1:6379&gt; ZREVRANGE salary 0 -1 withscores		#显示从小到大，带score<br>1) &quot;tom&quot;<br>2) &quot;5100&quot;<br>3) &quot;bob&quot;<br>4) &quot;5100&quot;<br>5) &quot;wekser&quot;<br>6) &quot;5000&quot;<br><br>127.0.0.1:6379&gt; ZRANGEBYSCORE salary -inf 5000  withscores#查询5000以下的值，包括5000，升序排列<br>1) &quot;kitty&quot;<br>2) &quot;4800&quot;<br>3) &quot;wekser&quot;<br>4) &quot;5000&quot;<br><br><br>127.0.0.1:6379&gt; zrange salary 0 -1<br>1) &quot;kitty&quot;<br>2) &quot;wekser&quot;<br>3) &quot;bob&quot;<br>4) &quot;tom&quot;<br>127.0.0.1:6379&gt; zrem salary kitty		#移除一个元素<br>(integer) 1<br>127.0.0.1:6379&gt; zrange salary 0 -1<br>1) &quot;wekser&quot;<br>2) &quot;bob&quot;<br>3) &quot;tom&quot;<br>127.0.0.1:6379&gt; ZCARD salary		#获取有序集合中的个数<br>(integer) 3<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">获取指定区间的成员数量</span><br>127.0.0.1:6379&gt; zadd zset1 1 hello 2 wesker 3 world<br>(integer) 3<br>127.0.0.1:6379&gt; ZRANGE zset1 0 -1<br>1) &quot;hello&quot;<br>2) &quot;wesker&quot;<br>3) &quot;world&quot;<br>127.0.0.1:6379&gt; ZCOUNT zset1 1 3	#获取指定区间的成员数量<br>(integer) 3<br><br></code></pre></td></tr></table></figure>
-
-<h1 id="三种特殊数据类型"><a href="#三种特殊数据类型" class="headerlink" title="三种特殊数据类型"></a>三种特殊数据类型</h1>]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring入门</title>
     <url>/2021/10/07/Spring/</url>
     <content><![CDATA[<h1 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h1><h1 id="1-软件框架技术简介"><a href="#1-软件框架技术简介" class="headerlink" title="1.软件框架技术简介"></a>1.软件框架技术简介</h1><p>软件框架（software framework），通常指的是为了实现某个业界标准或完成特定基本任务的软件组件规范，也指为了实现某个软件组件规范时，提供规范所要求之基础功能的软件产品。</p>
@@ -1575,6 +1297,659 @@
         <tag>框架</tag>
         <tag>Java</tag>
         <tag>SpringMVC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis</title>
+    <url>/2022/06/23/Redis/</url>
+    <content><![CDATA[<h1 id="Redis入门"><a href="#Redis入门" class="headerlink" title="Redis入门"></a>Redis入门</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>Redis是什么</p>
+</blockquote>
+<p>Redis（Remote Dictionary Server )，即==远程字典服务==，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦==可持久化==的日志型、Key-Value数据库，并提供多种语言的API。也被人们称之为结构化数据库</p>
+<p>—来自<a href="https://baike.baidu.com/item/Redis">百度百科</a></p>
+<blockquote>
+<p>Redis能干嘛</p>
+</blockquote>
+<p>1、内存存储、持久化（rdb，aof）</p>
+<p>2、效率高，可以用于高速缓存</p>
+<p>3、发布订阅系统</p>
+<p>4、地图信息分析</p>
+<p>5、计时器、计数器（浏览量）</p>
+<p>6、。。。</p>
+<blockquote>
+<p>特性</p>
+</blockquote>
+<p>1、多样的数据类型</p>
+<p>2、持久化</p>
+<p>3、集群</p>
+<p>4、事物</p>
+<blockquote>
+<p>学习Redis需要的东西</p>
+</blockquote>
+<p>1、狂神公众号</p>
+<p>2、官网：<a href="https://redis.io/">https://redis.io/</a></p>
+<p>3、中文网：<a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+<h2 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h2><p>1、下载安装包</p>
+<p><a href="https://github.com/microsoftarchive/redis/releases">https://github.com/microsoftarchive/redis/releases</a></p>
+<p><img src="/2022/06/23/Redis/image-20220625205058175.png" alt="image-20220625205058175"></p>
+<p>2、解压</p>
+<p><img src="/2022/06/23/Redis/image-20220625205150113.png" alt="image-20220625205150113"></p>
+<p>3、开启Redis，双击redis-server.exe即可</p>
+<p><img src="/2022/06/23/Redis/image-20220625205407530.png" alt="image-20220625205407530"></p>
+<p>4、使用客户端连接Redis</p>
+<p><img src="/2022/06/23/Redis/image-20220625205546630.png" alt="image-20220625205546630"></p>
+<p>测试连接：</p>
+<p><img src="/2022/06/23/Redis/image-20220625210004502.png" alt="image-20220625210004502"></p>
+<p>windows下使用很简单，但是Redis建议使用Linux来使用—-来自<a href="http://www.redis.cn/topics/introduction">Redis介绍</a></p>
+<p><img src="/2022/06/23/Redis/image-20220625210347560.png" alt="image-20220625210347560"></p>
+<h2 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h2><p>1、下载安装包<a href="https://download.redis.io/releases/">https://download.redis.io/releases/</a></p>
+<p>2、解压Redis安装包，一般放到opt目录下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost opt]# tar -zxvf redis-5.0.8.tar.gz <br><br>[root@localhost opt]# ls<br>redis-5.0.8  redis-5.0.8.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>3、进入解压后的文件</p>
+<p><img src="/2022/06/23/Redis/image-20220625213922391.png" alt="image-20220625213922391"></p>
+<p>4、安装基本环境</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost redis-5.0.8]# yum install gcc c++<br><br>make<br><br>make install<br></code></pre></td></tr></table></figure>
+
+<p>5、Redis默认安装路径<code>/usr/local/bin</code></p>
+<p><img src="/2022/06/23/Redis/image-20220625215239887.png" alt="image-20220625215239887"></p>
+<p>6、将Redis配置文件复制到当前目录下</p>
+<p><img src="/2022/06/23/Redis/image-20220625221034083.png" alt="image-20220625221034083"></p>
+<p>7、Redis默认不是后台启动，我们需要配置conf文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# vim wconfig/redis.conf <br></code></pre></td></tr></table></figure>
+
+<p><img src="/2022/06/23/Redis/image-20220625221327016.png" alt="image-20220625221327016"></p>
+<p>8、启动服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# redis-server wconfig/redis.conf <br></code></pre></td></tr></table></figure>
+
+<p><img src="/2022/06/23/Redis/image-20220625221703754.png" alt="image-20220625221703754"></p>
+<p>9、启动客户端，连接服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# redis-cli -p 6379			#6379<br>127.0.0.1:6379&gt; ping		#测试<br>PONG<br>127.0.0.1:6379&gt; set name wesker<br>OK<br>127.0.0.1:6379&gt; get name<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; keys *		#查看所有的key<br>1) &quot;name&quot;<br></code></pre></td></tr></table></figure>
+
+<p>10、查看Redis的进程是否开启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs SHELL">[root@localhost bin]# ps -ef|grep redis<br>root      16171      1  0 22:16 ?        00:00:07 redis-server 127.0.0.1:6379<br>root      16422   2345  0 22:32 pts/0    00:00:00 redis-cli -p 6379<br>root      16603  16554  0 22:44 pts/1    00:00:00 grep --color=auto redis<br></code></pre></td></tr></table></figure>
+
+<p>11、如何关闭Redis服务？</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; shutdown	#关闭Redis<br>not connected&gt; exit			#退出<br>[root@localhost bin]# ps -ef|grep redis		#再次查看进程<br>root      16636  16554  0 22:47 pts/1    00:00:00 grep --color=auto redis<br>[root@localhost bin]# <br></code></pre></td></tr></table></figure>
+
+<h2 id="测试性能"><a href="#测试性能" class="headerlink" title="测试性能"></a>测试性能</h2><p><strong>redis-benchmark</strong></p>
+<p>官方自带的性能测试参数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# ll<br>总用量 32776<br>-rw-r--r-- 1 root root     110 6月  25 22:46 dump.rdb<br>-rwxr-xr-x 1 root root 4366856 6月  25 22:05 redis-benchmark<br>-rwxr-xr-x 1 root root 8125048 6月  25 22:05 redis-check-aof<br>-rwxr-xr-x 1 root root 8125048 6月  25 22:05 redis-check-rdb<br>-rwxr-xr-x 1 root root 4807840 6月  25 22:05 redis-cli<br>lrwxrwxrwx 1 root root      12 6月  25 22:05 redis-sentinel -&gt; redis-server<br>-rwxr-xr-x 1 root root 8125048 6月  25 22:05 redis-server<br>drwxr-xr-x 2 root root      24 6月  25 22:13 wconfig<br></code></pre></td></tr></table></figure>
+
+<p>性能测试可选参数如下：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>选项</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>-h</strong></td>
+<td>指定服务器主机名</td>
+<td>127.0.0.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>-p</strong></td>
+<td>指定服务器端口</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>-s</strong></td>
+<td>指定服务器 socket</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>-c</strong></td>
+<td>指定并发连接数</td>
+<td>50</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>-n</strong></td>
+<td>指定请求数</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>-d</strong></td>
+<td>以字节的形式指定 SET/GET 值的数据大小</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>-k</strong></td>
+<td>1=keep alive 0=reconnect</td>
+<td>1</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>-r</strong></td>
+<td>SET/GET/INCR 使用随机 key, SADD 使用随机值</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>-P</strong></td>
+<td>通过管道传输 <numreq> 请求</numreq></td>
+<td>1</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>-q</strong></td>
+<td>强制退出 redis。仅显示 query/sec 值</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>–csv</strong></td>
+<td>以 CSV 格式输出</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>***-l*（L 的小写字母）**</td>
+<td>生成循环，永久执行测试</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>-t</strong></td>
+<td>仅运行以逗号分隔的测试命令列表。</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>***-I*（i 的大写字母）**</td>
+<td>Idle 模式。仅打开 N 个 idle 连接并等待。</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>​                                                                        —–来自<a href="https://www.runoob.com/redis/redis-benchmarks.html">菜鸟教程</a></p>
+<p><strong>测试</strong></p>
+<p>100个并发，10000个请求（默认是50个并发，10000个请求）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">[root@localhost bin]# redis-benchmark -h localhost -p 6379 -c 100  -n 100000<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2022/06/23/Redis/image-20220626134400163.png" alt="image-20220626134400163"></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>Redis默认有16个数据库</p>
+<p><img src="/2022/06/23/Redis/image-20220626134755958.png" alt="image-20220626134755958"></p>
+<p>默认使用的是第0个数据库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; select 3		#选择第三个数据库<br>OK<br>127.0.0.1:6379[3]&gt; dbsize			#查看当前数据库大小<br>(integer) 0<br>127.0.0.1:6379[3]&gt; set name wei		<br>OK<br>127.0.0.1:6379[3]&gt; select 5<br>OK<br>127.0.0.1:6379[5]&gt; get name<br>(nil)<br>127.0.0.1:6379[5]&gt; select 3<br>OK<br>127.0.0.1:6379[3]&gt; get name<br>&quot;wei&quot;<br>127.0.0.1:6379[3]&gt; dbsize<br>(integer) 1<br>127.0.0.1:6379[3]&gt; keys *		#查看当前数据库所有的key<br>1) &quot;name&quot;<br>127.0.0.1:6379[3]&gt; flushdb		#清空当前数据库<br>OK<br>127.0.0.1:6379[3]&gt; keys *<br>(empty list or set)<br>127.0.0.1:6379[3]&gt; select 0		#切换0号数据库<br>OK<br>127.0.0.1:6379&gt; set name wesker		#设置name为wesker<br>OK<br>127.0.0.1:6379&gt; keys *		#查看当前数据库所有的key<br>1) &quot;name&quot;<br>127.0.0.1:6379&gt; select 3 	#切换回3号数据库<br>OK<br>127.0.0.1:6379[3]&gt; flushall		#执行flush命令（清空所有数据库）<br>OK<br>127.0.0.1:6379[3]&gt; select 0		#切换回0号数据库<br>OK<br>127.0.0.1:6379&gt; keys *		#查看所有的key<br>(empty list or set)		#显示为空<br>127.0.0.1:6379&gt; <br></code></pre></td></tr></table></figure>
+
+<p>为什么端口号是6379？明星名字九宫格对应的数字6379</p>
+<blockquote>
+<p>Redis是单线程的</p>
+</blockquote>
+<p>Redis很快的，基于内存操作，CPU不是Redis的性能瓶颈，而是机器的内存和带宽，既然能够使用单线程来实现所以就是用了单线程</p>
+<p><strong>Redis单线程为什么这么快？</strong></p>
+<p> 1、误区1：高性能的服务器一定是多线程的</p>
+<p>2、误区2：多线程（CPU上下文会切换，耗时间）一定必单线程效率高</p>
+<p>核心：Redis是将所有的数据放在内存中的，所以说使用单线程操作效率就是最高的，对于内存系统来说，如果没有上下文切换效率就是最高的，多次读写都是在一个CPU上的，在内存情况下，这个方案就是最佳的</p>
+<h1 id="五大数据类型"><a href="#五大数据类型" class="headerlink" title="五大数据类型"></a>五大数据类型</h1><p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。 </p>
+<h2 id="Redis-key"><a href="#Redis-key" class="headerlink" title="Redis-key"></a>Redis-key</h2><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; set name wesker				#设置name 值为wesker<br>OK<br>127.0.0.1:6379&gt; set age 18					#设置age 值为18<br>OK<br>127.0.0.1:6379&gt; keys *						#查询所有的key<br>1) &quot;age&quot;<br>2) &quot;name&quot;<br><br>127.0.0.1:6379&gt; move age 1					#移除一个指定的key<br>(integer) 1<br>127.0.0.1:6379&gt; keys *				<br>1) &quot;name&quot;<br>127.0.0.1:6379&gt; EXISTS name					#查询是否存在指定的key<br>(integer) 1									#返回1表示存在<br>127.0.0.1:6379&gt; EXISTS name1<br>(integer) 0									#返回0便是不存在<br>127.0.0.1:6379&gt; EXPIRE name 10				#设置指定的key的过期时间，单位为秒<br>(integer) 1<br>127.0.0.1:6379&gt; TTL name					#查看指定key的剩余时间<br>(integer) -2								#负数代表已经过期<br>127.0.0.1:6379&gt; keys *<br>(empty list or set)<br>127.0.0.1:6379&gt; set name wesker<br>OK<br>127.0.0.1:6379&gt; TYPE name					#查看指定键的类型<br>string<br>127.0.0.1:6379&gt; <br></code></pre></td></tr></table></figure>
+
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>String(字符串)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> k1 hello				<span class="hljs-comment">#设置键值对，key为k1,value为hello</span><br>OK<br>127.0.0.1:6379&gt; KEYS *						<span class="hljs-comment">#查看所有的key</span><br>1) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; get k1						<span class="hljs-comment">#通过指定的key获取value</span><br><span class="hljs-string">&quot;hello&quot;</span><br>127.0.0.1:6379&gt; EXISTS k1					<span class="hljs-comment">#查询指定的key是否存在</span><br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; APPEND k1 <span class="hljs-string">&quot;,hello&quot;</span>			<span class="hljs-comment">#通过指定的key在value后追加内容，返回字符串长度</span><br>(<span class="hljs-built_in">integer</span>) 11<br>127.0.0.1:6379&gt; get k1<br><span class="hljs-string">&quot;hello,hello&quot;</span><br>127.0.0.1:6379&gt; STRLEN k1					<span class="hljs-comment">#查询指定key的value的长度</span><br>(<span class="hljs-built_in">integer</span>) 11<br>127.0.0.1:6379&gt; APPEND k1 <span class="hljs-string">&quot;,world&quot;</span><br>(<span class="hljs-built_in">integer</span>) 17<br>127.0.0.1:6379&gt; get k1<br><span class="hljs-string">&quot;hello,hello,world&quot;</span><br>127.0.0.1:6379&gt; KEYS *<br>1) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; APPEND k2 <span class="hljs-string">&quot;hello world&quot;</span>		<span class="hljs-comment">#如果不存在指定的key，则相当于set</span><br>(<span class="hljs-built_in">integer</span>) 11<br>127.0.0.1:6379&gt; keys *<br>1) <span class="hljs-string">&quot;k2&quot;</span><br>2) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> views 0					<span class="hljs-comment">#创建views</span><br>OK<br>127.0.0.1:6379&gt; TYPE views					<span class="hljs-comment">#查看类型</span><br>string<br>127.0.0.1:6379&gt; incr views					<span class="hljs-comment">#执行一次自增1，类似i++</span><br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; incr views<br>(<span class="hljs-built_in">integer</span>) 2<br>127.0.0.1:6379&gt; incr views<br>(<span class="hljs-built_in">integer</span>) 3<br>127.0.0.1:6379&gt; decr views					<span class="hljs-comment">#执行一次自减1</span><br>(<span class="hljs-built_in">integer</span>) 3<br>127.0.0.1:6379&gt; decr views<br>(<span class="hljs-built_in">integer</span>) 2<br>127.0.0.1:6379&gt; decr views<br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; INCRBY views 10				<span class="hljs-comment">#自增，步长为10</span><br>(<span class="hljs-built_in">integer</span>) 10<br>127.0.0.1:6379&gt; INCRBY views 10<br>(<span class="hljs-built_in">integer</span>) 20<br>127.0.0.1:6379&gt; DECRBY views 5				<span class="hljs-comment">#自减，步长为5</span><br>(<span class="hljs-built_in">integer</span>) 15<br>127.0.0.1:6379&gt; DECRBY views 5<br>(<span class="hljs-built_in">integer</span>) 10<br><br><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> key1 <span class="hljs-string">&quot;hello,wesker&quot;</span>		<br>OK<br>127.0.0.1:6379&gt; get key1<br><span class="hljs-string">&quot;hello,wesker&quot;</span><br>127.0.0.1:6379&gt; GETRANGE key1 0 5			<span class="hljs-comment">#截取第0个到第5个字符的字符串[0,5]</span><br><span class="hljs-string">&quot;hello,&quot;</span><br>127.0.0.1:6379&gt; GETRANGE key1 0 -1			<span class="hljs-comment">#获取所有字符串</span><br><span class="hljs-string">&quot;hello,wesker&quot;</span><br><br><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> key2 abcdef<br>OK<br>127.0.0.1:6379&gt; get key2<br><span class="hljs-string">&quot;abcdef&quot;</span><br>127.0.0.1:6379&gt; SETRANGE key2 1 xx			<span class="hljs-comment">#将第1个字符的位置换位xx</span><br>(<span class="hljs-built_in">integer</span>) 6<br>127.0.0.1:6379&gt; get key2<br><span class="hljs-string">&quot;axxdef&quot;</span><br><br><span class="hljs-comment">#setex(set with expire)  设置过期时间</span><br><span class="hljs-comment">#setnx(set if not exist) 如果不存在再设置</span><br>127.0.0.1:6379&gt; setex key3 30 wesker		<span class="hljs-comment">#设置过期时间30秒</span><br>OK<br>127.0.0.1:6379&gt; ttl key3					<span class="hljs-comment">#查看剩余时间</span><br>(<span class="hljs-built_in">integer</span>) 17<br>127.0.0.1:6379&gt; setnx key4 <span class="hljs-string">&quot;radis&quot;</span>			<span class="hljs-comment">#如果不存在该key，则设置</span><br>(<span class="hljs-built_in">integer</span>) 1<br>127.0.0.1:6379&gt; get key4<br><span class="hljs-string">&quot;radis&quot;</span><br>127.0.0.1:6379&gt; setnx key4 <span class="hljs-string">&quot;mongoDB&quot;</span>		<span class="hljs-comment">#已存在该key，返回值是0</span><br>(<span class="hljs-built_in">integer</span>) 0<br><br><br><br>127.0.0.1:6379&gt; mset k1 v1 k2 v2 k3 v3      <span class="hljs-comment">#一次性设置多个键值对</span><br>OK<br>127.0.0.1:6379&gt; keys *<br>1) <span class="hljs-string">&quot;k2&quot;</span><br>2) <span class="hljs-string">&quot;k3&quot;</span><br>3) <span class="hljs-string">&quot;k1&quot;</span><br>127.0.0.1:6379&gt; get k2<br><span class="hljs-string">&quot;v2&quot;</span><br>127.0.0.1:6379&gt; mget k1 k2 					<span class="hljs-comment">#一次性根据多个key获取value</span><br>1) <span class="hljs-string">&quot;v1&quot;</span><br>2) <span class="hljs-string">&quot;v2&quot;</span><br>127.0.0.1:6379&gt; msetnx k1 v1 k4 v4			<span class="hljs-comment">#如果不存在再创建</span><br>(<span class="hljs-built_in">integer</span>) 0<br>127.0.0.1:6379&gt; get k4<br>(nil)<br><br><br><span class="hljs-comment">#创建对象</span><br>127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> user:1 &#123;name:wesker,age:18&#125; <span class="hljs-comment">#设置键值对，key为user：1，value为JSON字符串，值为&#123;name:wesker,age:18&#125;</span><br><br><br>127.0.0.1:6379&gt; mset user:1:name wesker user:1:age 22<br>OK<br>127.0.0.1:6379&gt; mget user:1:name<br>1) <span class="hljs-string">&quot;wesker&quot;</span><br><br><br>127.0.0.1:6379&gt; getset k1 redis				<span class="hljs-comment">#先获取原来的值，再设置新的值，如果没有则返回nil</span><br>(nil)<br>127.0.0.1:6379&gt; getset k1 mongoDB<br><span class="hljs-string">&quot;redis&quot;</span><br>127.0.0.1:6379&gt; get k1<br><span class="hljs-string">&quot;mongoDB&quot;</span><br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小结</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>set key value</td>
+<td>添加一个键值对</td>
+</tr>
+<tr>
+<td>get key</td>
+<td>根据key获取value</td>
+</tr>
+<tr>
+<td>keys *</td>
+<td>查询所有的key</td>
+</tr>
+<tr>
+<td>exists key [key…]</td>
+<td>判断指定的key是否存在</td>
+</tr>
+<tr>
+<td>append key value</td>
+<td>根据指定的key进行追加（返回追加后的长度）</td>
+</tr>
+<tr>
+<td>strlen key</td>
+<td>根据指定的key查询value的长度</td>
+</tr>
+<tr>
+<td>type key</td>
+<td>根据key判断数据类型</td>
+</tr>
+<tr>
+<td>incr key</td>
+<td>根据指定key的value进行自增1</td>
+</tr>
+<tr>
+<td>decr key</td>
+<td>根据指定key的value进行自减1</td>
+</tr>
+<tr>
+<td>incrby key increment</td>
+<td>根据指定key的value进行自增，步长为increment</td>
+</tr>
+<tr>
+<td>decrby key increment</td>
+<td>根据指定key的value进行自减，步长为increment</td>
+</tr>
+<tr>
+<td>getrange key start end</td>
+<td>根据key截取第start到第end个字符串，[start,end]</td>
+</tr>
+<tr>
+<td>getrange key 0 -1</td>
+<td>根据key获取所有的value</td>
+</tr>
+<tr>
+<td>setrange key offset value</td>
+<td>根据key将第offset个字符换为value</td>
+</tr>
+<tr>
+<td>setex key second value</td>
+<td>添加一个键值对，并设置过期时间，默认秒</td>
+</tr>
+<tr>
+<td>ttl key</td>
+<td>根据key查询所剩过期时间</td>
+</tr>
+<tr>
+<td>setnx key value</td>
+<td>如果不存在该key，则创建</td>
+</tr>
+<tr>
+<td>mset key value [key value…]</td>
+<td>一次创建多个键值对</td>
+</tr>
+<tr>
+<td>mget [key…]</td>
+<td>根据key一次获取多个value</td>
+</tr>
+<tr>
+<td>setnx key value [key value…]</td>
+<td>如果不存在多个指定的key，则创建</td>
+</tr>
+<tr>
+<td>getset key value</td>
+<td>先获取原来的值，再设置新的值，如果没有则返回nil</td>
+</tr>
+</tbody></table>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>在Redis里面，可以把list玩成栈，队列、阻塞队列</p>
+<p>list所有的命令都是以l开头的</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; LPUSH list one			#将一个值或者多个值放在列表头部（左边）<br>(integer) 1<br>127.0.0.1:6379&gt; LPUSH list two<br>(integer) 2<br>127.0.0.1:6379&gt; LPUSH list three<br>(integer) 3<br>127.0.0.1:6379&gt; LRANGE list 0 -1		#根据区间获取list中具体的值<br>1) &quot;three&quot;<br>2) &quot;two&quot;<br>3) &quot;one&quot;<br>127.0.0.1:6379&gt; LRANGE list 0 1			#倒着存的<br>1) &quot;three&quot;<br>2) &quot;two&quot;<br><br><br>127.0.0.1:6379&gt; RPUSH list right		#将一个值或者多个值放在列表尾部部（右边）<br>(integer) 4<br>127.0.0.1:6379&gt; keys *<br>1) &quot;list&quot;<br>127.0.0.1:6379&gt; get list<br>(error) WRONGTYPE Operation against a key holding the wrong kind of value<br>127.0.0.1:6379&gt; LRANGE list<br>(error) ERR wrong number of arguments for &#x27;lrange&#x27; command<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;two&quot;<br>3) &quot;one&quot;<br>4) &quot;right&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">删除元素</span><br>127.0.0.1:6379&gt; lpop list		#删除左边一个元素<br>&quot;three&quot;<br>127.0.0.1:6379&gt; rpop list		#删除右边一个元素<br>&quot;right&quot;<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;two&quot;<br>2) &quot;one&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据下标获取元素</span><br>127.0.0.1:6379&gt; lindex list 0<br>&quot;two&quot;<br>127.0.0.1:6379&gt; lindex list 1<br>&quot;one&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">获取list的长度</span><br>127.0.0.1:6379&gt; LPUSH list one<br>(integer) 1<br>127.0.0.1:6379&gt; LPUSH list two<br>(integer) 2<br>127.0.0.1:6379&gt; LPUSH list three<br>(integer) 3<br>127.0.0.1:6379&gt; llen list<br>(integer) 3<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">移除指定list中的值</span><br>127.0.0.1:6379&gt; LPUSH list three			#再添加一个three<br>(integer) 4<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;three&quot;<br>3) &quot;two&quot;<br>4) &quot;one&quot;<br>127.0.0.1:6379&gt; lrem list 1 one				#删除一个key为list的集合中值为one的元素<br>(integer) 1<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;three&quot;<br>3) &quot;two&quot;<br>127.0.0.1:6379&gt; lrem list 2 two				#删除两个key为list的集合中值为two的元素<br>(integer) 1<br>127.0.0.1:6379&gt; lrem list 2 two			#list只有一个two，删除两个，和删除一个的命令效果一样<br>(integer) 0<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>1) &quot;three&quot;<br>2) &quot;three&quot;<br>127.0.0.1:6379&gt; lrem list 2 three			##删除两个key为list的集合中值为three的元素<br>(integer) 2<br>127.0.0.1:6379&gt; LRANGE list 0 -1<br>(empty list or set)<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据下标截取指定的list中的value，闭区间</span><br>127.0.0.1:6379&gt; RPUSH mylist helllo1<br>(integer) 1<br>127.0.0.1:6379&gt; RPUSH mylist helllo2<br>(integer) 2<br>127.0.0.1:6379&gt; RPUSH mylist helllo3<br>(integer) 3<br>127.0.0.1:6379&gt; RPUSH mylist helllo4<br>(integer) 4<br>127.0.0.1:6379&gt; LTRIM mylist 1 2		#截取第1个到第2个元素，list已经被修改<br>OK<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;helllo2&quot;<br>2) &quot;helllo3&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">移除列表最后一个元素（从左到右），并将这个元素移到一个新的list中</span><br>127.0.0.1:6379&gt; LRANGE mylist 0 -1		<br>1) &quot;one&quot;<br>2) &quot;two&quot;<br>3) &quot;three&quot;<br>127.0.0.1:6379&gt; RPOPLPUSH mylist mynewlist<br>&quot;three&quot;<br>127.0.0.1:6379&gt; keys *		#创建了名为mynewlist的新list<br>1) &quot;mynewlist&quot;<br>2) &quot;mylist&quot;<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1		#查看原来的list<br>1) &quot;one&quot;<br>2) &quot;two&quot;<br>127.0.0.1:6379&gt; LRANGE mynewlist 0 -1		#查看新的list<br>1) &quot;three&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据下标更新指定list中的值</span><br>127.0.0.1:6379&gt; EXISTS mylist			#查看是否存在指定的list<br>(integer) 0<br>127.0.0.1:6379&gt; LSET mylist 0 newvalue	#如果不存在执行lset就会报错<br>(error) ERR no such key<br>127.0.0.1:6379&gt; LPUSH mylist value1		#先往list中添加元素<br>(integer) 1<br>127.0.0.1:6379&gt; LPUSH mylist value2<br>(integer) 2<br>127.0.0.1:6379&gt; LSET mylist 0 newvalue1	#修改第0个元素的值，newvalue<br>OK<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1		#查看list所有的值<br>1) &quot;newvalue1&quot;<br>2) &quot;value1&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">在指定的list中的指定value前面或是后面插入一个值</span><br>127.0.0.1:6379&gt; RPUSH mylist hello<br>(integer) 1<br>127.0.0.1:6379&gt; RPUSH mylist world<br>(integer) 2<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;hello&quot;<br>2) &quot;world&quot;<br>127.0.0.1:6379&gt; LINSERT mylist before world my #在“world”前面添加一个值，my<br>(integer) 3<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;hello&quot;<br>2) &quot;my&quot;<br>3) &quot;world&quot;<br>127.0.0.1:6379&gt; LINSERT mylist after  hello &quot;welcome to&quot; 	#在“hello”后面添加一个值<br>(integer) 4<br>127.0.0.1:6379&gt; LRANGE mylist 0 -1<br>1) &quot;hello&quot;<br>2) &quot;welcome to&quot;<br>3) &quot;my&quot;<br>4) &quot;world&quot;<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小结</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lpush key value [value …]</td>
+<td>从左边依次往list中存放元素</td>
+</tr>
+<tr>
+<td>rpush key value [value …]</td>
+<td>从右边依次往list中存放元素</td>
+</tr>
+<tr>
+<td>lrange key start stop</td>
+<td>根据索引范围获取list中对应的元素</td>
+</tr>
+<tr>
+<td>lpop key</td>
+<td>删除最左边的一个元素</td>
+</tr>
+<tr>
+<td>rpop</td>
+<td>删除最右边的一个元素</td>
+</tr>
+<tr>
+<td>lindex key index</td>
+<td>根据下标获取元素</td>
+</tr>
+<tr>
+<td>llen key</td>
+<td>获取list长度</td>
+</tr>
+<tr>
+<td>lrem key count value</td>
+<td>删除指定list中的值，count表示删除的数量</td>
+</tr>
+<tr>
+<td>ltrim key start stop</td>
+<td>根据索引范围截取指定的list中的值，原来的list修改</td>
+</tr>
+<tr>
+<td>RPOPLPUSH source destination</td>
+<td>移除列表最后一个元素（从左到右），并将这个元素移到一个新的list中</td>
+</tr>
+<tr>
+<td>LSET key index value</td>
+<td>根据下标更新指定list中的值</td>
+</tr>
+<tr>
+<td>linsert key before|after pivot value</td>
+<td>在指定的list中的指定value前面或是后面插入一个值</td>
+</tr>
+</tbody></table>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>set中的值不能重复</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; sadd myset hello			#set集合中添加元素<br>(integer) 1<br>127.0.0.1:6379&gt; sadd myset world<br>(integer) 1<br>127.0.0.1:6379&gt; SMEMBERS myset				#查看set的所有元素<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br>127.0.0.1:6379&gt; SISMEMBER myset hello		#判断set中是否存在某个元素<br>(integer) 1<br>127.0.0.1:6379&gt; SISMEMBER myset wesker<br>(integer) 0<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">获取指定<span class="hljs-built_in">set</span>的元素个数</span><br>127.0.0.1:6379&gt; SCARD myset<br>(integer) 2<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">删除指定<span class="hljs-built_in">set</span>中的元素</span><br>127.0.0.1:6379&gt; SREM myset hello<br>(integer) 1<br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">随机获取<span class="hljs-built_in">set</span>中的元素，默认一个</span><br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br>3) &quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;world&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;hello&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SRANDMEMBER myset 2		#指定随机获取两个元素<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br><br><br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br>2) &quot;hello&quot;<br>3) &quot;wesker&quot;<br><span class="hljs-meta">#</span><span class="bash">删除指定的元素，随机删除</span><br>127.0.0.1:6379&gt; SPOP myset<br>&quot;wesker&quot;<br>127.0.0.1:6379&gt; SPOP myset<br>&quot;world&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">将一个指定的值移动到另一个<span class="hljs-built_in">set</span>集合中</span><br>127.0.0.1:6379&gt; sadd myset world wesker tom	#同时添加多个元素<br>(integer) 3<br>127.0.0.1:6379&gt; SMEMBERS myset<br>1) &quot;world&quot;<br>2) &quot;tom&quot;<br>3) &quot;hello&quot;<br>4) &quot;wesker&quot;<br>127.0.0.1:6379&gt; sadd mynewset newset	#新增一个新的set，并添加一个元素newset<br>(integer) 1<br>127.0.0.1:6379&gt; SMOVE myset mynewset wesker	#将一个指定的值移动到另一个set集合中<br>(integer) 1<br>127.0.0.1:6379&gt; SMEMBERS mynewset<br>1) &quot;newset&quot;<br>2) &quot;wesker&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">差集，交集，并集</span><br>127.0.0.1:6379&gt; SMEMBERS set1<br>1) &quot;c&quot;<br>2) &quot;d&quot;<br>3) &quot;b&quot;<br>4) &quot;a&quot;<br>127.0.0.1:6379&gt; SMEMBERS set2<br>1) &quot;d&quot;<br>2) &quot;e&quot;<br>3) &quot;b&quot;<br>127.0.0.1:6379&gt; SDIFF set1 set2			#取差集<br>1) &quot;c&quot;<br>2) &quot;a&quot;<br>127.0.0.1:6379&gt; SINTER set1 set2		#取交集<br>1) &quot;d&quot;<br>2) &quot;b&quot;<br>127.0.0.1:6379&gt; SUNION set1 set2		#取并集<br>1) &quot;b&quot;<br>2) &quot;a&quot;<br>3) &quot;e&quot;<br>4) &quot;c&quot;<br>5) &quot;d&quot;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小结</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sadd key member [member …]</td>
+<td>创建set,并添加member</td>
+</tr>
+<tr>
+<td>smember key</td>
+<td>查看指定set中的所有元素</td>
+</tr>
+<tr>
+<td>sismember key member</td>
+<td>判断set中是否存在指定的member</td>
+</tr>
+<tr>
+<td>scard key</td>
+<td>查询指定的set中的元素个数</td>
+</tr>
+<tr>
+<td>srem key member</td>
+<td>删除指定set中的member</td>
+</tr>
+<tr>
+<td>srandmember key [count]</td>
+<td>随机获取指定数量的set中的一个元素，默认数量为1</td>
+</tr>
+<tr>
+<td>spop key [count]</td>
+<td>随机删除并获取一个集合里面的元素</td>
+</tr>
+<tr>
+<td>smove source destination member</td>
+<td>移动集合里面的元素到另外一个集合</td>
+</tr>
+<tr>
+<td>sdiff key [key key …]</td>
+<td>获取队列不存在的元素</td>
+</tr>
+<tr>
+<td>sinter</td>
+<td>获取两个集合的交集</td>
+</tr>
+<tr>
+<td>sunion</td>
+<td>获取两个集合的并集</td>
+</tr>
+</tbody></table>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p>hash里面存的也是value，只是value对应的是map集合，key-map，本质和string没有太大区别</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; hset myhash key1 value1	#创建名为myhash的hash，添加一个键值对<br>(integer) 1<br>127.0.0.1:6379&gt; hget myhash key1<br>&quot;value1&quot;<br>127.0.0.1:6379&gt; hset myhash key2 value2<br>(integer) 1<br>127.0.0.1:6379&gt; hset myhash key3 value3<br>(integer) 1<br>127.0.0.1:6379&gt; hmset myhash key4 value4 key5 value5 key6 value6	#往hash里添加多个键值对<br>OK<br>127.0.0.1:6379&gt; hmget myhash key4 key5		#获取指定hash中的多个key指定的value<br>1) &quot;value4&quot;<br>2) &quot;value5&quot;<br>127.0.0.1:6379&gt; hgetall myhash			#获取指定hash的所有key和value<br> 1) &quot;key1&quot;<br> 2) &quot;value1&quot;<br> 3) &quot;key2&quot;<br> 4) &quot;value2&quot;<br> 5) &quot;key3&quot;<br> 6) &quot;value3&quot;<br> 7) &quot;key4&quot;<br> 8) &quot;value4&quot;<br> 9) &quot;key5&quot;<br>10) &quot;value5&quot;<br>11) &quot;key6&quot;<br>12) &quot;value6&quot;<br>127.0.0.1:6379&gt; hdel myhash key1 key2	#删除指定hash内的键值对，也删除了对应的value<br>(integer) 2<br>127.0.0.1:6379&gt; hgetall myhash<br>1) &quot;key3&quot;<br>2) &quot;value3&quot;<br>3) &quot;key4&quot;<br>4) &quot;value4&quot;<br>5) &quot;key5&quot;<br>6) &quot;value5&quot;<br>7) &quot;key6&quot;<br>8) &quot;value6&quot;<br>127.0.0.1:6379&gt; HLEN myhash			#获取指定hash的长度<br>(integer) 4<br>127.0.0.1:6379&gt; HEXISTS myhash key3		#判断是否存在某个值<br>(integer) 1<br>127.0.0.1:6379&gt; HEXISTS myhash key1<br>(integer) 0<br>127.0.0.1:6379&gt; hkeys myhash	#根据hash的key查询该hash内的所有字段（map里面的key）<br>1) &quot;field1&quot;<br>2) &quot;field2&quot;<br>3) &quot;field3&quot;<br>127.0.0.1:6379&gt; hvals myhash	#根据hash的key查询该hash内的所有value<br>1) &quot;value1&quot;<br>2) &quot;value2&quot;<br>3) &quot;value3&quot;<br><br><br><br>127.0.0.1:6379&gt; hset myhash field 3<br>(integer) 1<br>127.0.0.1:6379&gt; HINCRBY myhash field 1		#自增<br>(integer) 4<br>127.0.0.1:6379&gt; HINCRBY myhash field 2<br>(integer) 6<br>127.0.0.1:6379&gt; HINCRBY myhash field 1<br>(integer) 7<br>127.0.0.1:6379&gt; HINCRBY myhash field -1<br>(integer) 6<br>127.0.0.1:6379&gt; hsetnx myhash field1 value2		#如果不存在则可以设置<br>(integer) 1<br>127.0.0.1:6379&gt; hsetnx myhash field value2		#如果存在则可以设置<br>(integer) 0<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小结</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hset key field value</td>
+<td>设置一个hash里面字段的值</td>
+</tr>
+<tr>
+<td>hget key field</td>
+<td>获取hash里面字段的值</td>
+</tr>
+<tr>
+<td>hmset key field value [field value …]</td>
+<td>设置多个hash里面字段的值</td>
+</tr>
+<tr>
+<td>hget key field [field …]</td>
+<td>获取多个hash里面字段的值</td>
+</tr>
+<tr>
+<td>hgetall key</td>
+<td>获取指定hash的所有字段和值</td>
+</tr>
+<tr>
+<td>hdel key field [field …]</td>
+<td>删除指定hash里的字段和值</td>
+</tr>
+<tr>
+<td>hlen key</td>
+<td>获取指定hash的长度</td>
+</tr>
+<tr>
+<td>hkeys key</td>
+<td>获取指定hash的所有key</td>
+</tr>
+<tr>
+<td>hvals key</td>
+<td>获取hash的所有value</td>
+</tr>
+<tr>
+<td>hincryby key field increment</td>
+<td>增加指定hash的字段，步长为increment</td>
+</tr>
+<tr>
+<td>hsetnx key field value</td>
+<td>如果field不存在则可以设置</td>
+</tr>
+</tbody></table>
+<h2 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h2><p>有序集合，在set的集合上，增加了一个值</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; zadd myzset 1 one				#添加一个一个值<br>(integer) 1<br>127.0.0.1:6379&gt; zadd myzset 2 two 3 three		#添加多个值<br>(integer) 2<br>127.0.0.1:6379&gt; ZRANGE myzset 0 -1<br>1) &quot;one&quot;<br>2) &quot;two&quot;<br>3) &quot;three&quot;<br><br><br><br>127.0.0.1:6379&gt; zadd salary 5000 wekser		#添加三个值<br>(integer) 1<br>127.0.0.1:6379&gt; zadd salary 5100 tom<br>(integer) 1<br>127.0.0.1:6379&gt; zadd salary 4800 kitty<br>(integer) 1<br>127.0.0.1:6379&gt; zadd salary 5100 bob<br>(integer) 1<br>127.0.0.1:6379&gt; ZRANGE salary 0 -1		#显示所有用户<br>1) &quot;kitty&quot;<br>2) &quot;wekser&quot;<br>3) &quot;bob&quot;<br>4) &quot;tom&quot;<br><br>127.0.0.1:6379&gt; ZRANGEBYSCORE salary -inf +inf		#显示从小到大<br>1) &quot;kitty&quot;<br>2) &quot;wekser&quot;<br>3) &quot;bob&quot;<br>4) &quot;tom&quot;<br><br>127.0.0.1:6379&gt; ZRANGEBYSCORE salary -inf +inf withscores	#显示从小到大，带score<br>1) &quot;kitty&quot;<br>2) &quot;4800&quot;<br>3) &quot;wekser&quot;<br>4) &quot;5000&quot;<br>5) &quot;bob&quot;<br>6) &quot;5100&quot;<br>7) &quot;tom&quot;<br>8) &quot;5100&quot;<br>127.0.0.1:6379&gt; ZREVRANGE salary 0 -1 withscores		#显示从小到大，带score<br>1) &quot;tom&quot;<br>2) &quot;5100&quot;<br>3) &quot;bob&quot;<br>4) &quot;5100&quot;<br>5) &quot;wekser&quot;<br>6) &quot;5000&quot;<br><br>127.0.0.1:6379&gt; ZRANGEBYSCORE salary -inf 5000  withscores#查询5000以下的值，包括5000，升序排列<br>1) &quot;kitty&quot;<br>2) &quot;4800&quot;<br>3) &quot;wekser&quot;<br>4) &quot;5000&quot;<br><br><br>127.0.0.1:6379&gt; zrange salary 0 -1<br>1) &quot;kitty&quot;<br>2) &quot;wekser&quot;<br>3) &quot;bob&quot;<br>4) &quot;tom&quot;<br>127.0.0.1:6379&gt; zrem salary kitty		#移除一个元素<br>(integer) 1<br>127.0.0.1:6379&gt; zrange salary 0 -1<br>1) &quot;wekser&quot;<br>2) &quot;bob&quot;<br>3) &quot;tom&quot;<br>127.0.0.1:6379&gt; ZCARD salary		#获取有序集合中的个数<br>(integer) 3<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">获取指定区间的成员数量</span><br>127.0.0.1:6379&gt; zadd zset1 1 hello 2 wesker 3 world<br>(integer) 3<br>127.0.0.1:6379&gt; ZRANGE zset1 0 -1<br>1) &quot;hello&quot;<br>2) &quot;wesker&quot;<br>3) &quot;world&quot;<br>127.0.0.1:6379&gt; ZCOUNT zset1 1 3	#获取指定区间的成员数量<br>(integer) 3<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小结</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>zadd key score member [score member …]</td>
+<td>添加一个或多个成员到有序set</td>
+</tr>
+<tr>
+<td>zrange key start stop [withscore]</td>
+<td>根据指定的index返回成员列表</td>
+</tr>
+<tr>
+<td>zrangebyscore key min max [withscore]</td>
+<td>返回指定分数区间的成员，升序</td>
+</tr>
+<tr>
+<td>zrevrangebyscore key min max [withscore]</td>
+<td>返回指定分数区间的成员，降序</td>
+</tr>
+<tr>
+<td>zrem key member [member …]</td>
+<td>删除集合中的一个或多个成员</td>
+</tr>
+<tr>
+<td>zcard key</td>
+<td>获取集合成员的数量</td>
+</tr>
+<tr>
+<td>zcount key min max</td>
+<td>获取集合指定区间的成员</td>
+</tr>
+</tbody></table>
+<h1 id="三种特殊数据类型"><a href="#三种特殊数据类型" class="headerlink" title="三种特殊数据类型"></a>三种特殊数据类型</h1><h2 id="geospatial-地理空间"><a href="#geospatial-地理空间" class="headerlink" title="geospatial(地理空间)"></a>geospatial(地理空间)</h2><blockquote>
+<p>geoadd</p>
+</blockquote>
+<p><img src="/2022/06/23/Redis/image-20220628125804293.png" alt="image-20220628125804293"></p>
+<p>命令：GEOADD key 经度 纬度 名称</p>
+<ul>
+<li>有效的经度从-180度到180度。</li>
+<li>有效的纬度从-85.05112878度到85.05112878度。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">添加城市地理位置，两极无法直接添加，一般下载城市数据，直接通过java导入</span><br>127.0.0.1:6379&gt; GEOADD china:city 121.48941 31.40527 shanghai<br>(integer) 1<br>127.0.0.1:6379&gt; GEOADD china:city 116.23128 40.22077 beijing<br>(integer) 1<br>127.0.0.1:6379&gt; GEOADD china:city 106.62298 26.67865 guiyang<br>(integer) 1<br>127.0.0.1:6379&gt; GEOADD china:city 106.54041 29.40268 chongqing<br>(integer) 1<br>127.0.0.1:6379&gt; GEOADD china:city 120.21201 30.2084 hangzhou 113.88308 22.55329 shenzhen<br>(integer) 2<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据城市名获取当前城市的经度纬度</span><br>127.0.0.1:6379&gt; geopos china:city beijing<br>1) 1) &quot;116.23128265142440796&quot;<br>   2) &quot;40.22076905438526495&quot;<br>127.0.0.1:6379&gt; geopos china:city guiyang<br>1) 1) &quot;106.62298232316970825&quot;<br>   2) &quot;26.67865119132765273&quot;<br>127.0.0.1:6379&gt; geopos china:city chongqing<br>1) 1) &quot;106.54040783643722534&quot;<br>   2) &quot;29.40268053517299762&quot;<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>geodist</p>
+</blockquote>
+<p>返回两个给定位置之间的距离。</p>
+<p>如果两个位置之间的其中一个不存在， 那么命令返回空值。</p>
+<p>指定单位的参数 unit 必须是以下单位的其中一个：</p>
+<ul>
+<li><strong>m</strong> 表示单位为米。</li>
+<li><strong>km</strong> 表示单位为千米。</li>
+<li><strong>mi</strong> 表示单位为英里。</li>
+<li><strong>ft</strong> 表示单位为英尺。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">返回两个给定位置之间的距离,默认单位是米</span><br>127.0.0.1:6379&gt; geodist china:city shanghai guiyang<br>&quot;1536609.6329&quot;<br>127.0.0.1:6379&gt; geodist china:city shanghai guiyang km<br>&quot;1536.6096&quot;<br>127.0.0.1:6379&gt; geodist china:city shanghai chongqing<br>&quot;1450075.9512&quot;<br>127.0.0.1:6379&gt; geodist china:city chongqing guiyang<br>&quot;303092.0902&quot;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>georadius</p>
+</blockquote>
+<p>附近的人？获得附近的人的地址，定位，通过半径来查询</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">相当于以贵阳为圆心，查询500km内的城市</span><br>127.0.0.1:6379&gt; georadius china:city 106.54 29.4 500 km<br>1) &quot;guiyang&quot;<br>2) &quot;chongqing&quot;<br>127.0.0.1:6379&gt; georadius china:city 106.54 29.4 5000 km<br>1) &quot;guiyang&quot;<br>2) &quot;chongqing&quot;<br>3) &quot;shenzhen&quot;<br>4) &quot;hangzhou&quot;<br>5) &quot;shanghai&quot;<br>6) &quot;beijing&quot;<br><span class="hljs-meta">#</span><span class="bash">附带两点之间的直线距离，以及经纬度，查询的数量</span><br>127.0.0.1:6379&gt; georadius china:city 106.54 29.4 5000 km withcoord withdist count 2<br>1) 1) &quot;chongqing&quot;<br>   2) &quot;0.3008&quot;<br>   3) 1) &quot;106.54040783643722534&quot;<br>      2) &quot;29.40268053517299762&quot;<br>2) 1) &quot;guiyang&quot;<br>   2) &quot;302.7951&quot;<br>   3) 1) &quot;106.62298232316970825&quot;<br>      2) &quot;26.67865119132765273&quot;<br>127.0.0.1:6379&gt; <br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">根据城市名称查询指定范围内的城市</span><br>127.0.0.1:6379&gt; GEORADIUSBYMEMBER china:city guiyang 3000 km<br>1) &quot;guiyang&quot;<br>2) &quot;chongqing&quot;<br>3) &quot;shenzhen&quot;<br>4) &quot;hangzhou&quot;<br>5) &quot;shanghai&quot;<br>6) &quot;beijing&quot;<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>geohash</p>
+</blockquote>
+<p>返回一个或多个位置元素的 Geohash 表示。</p>
+<p>通常使用表示位置的元素使用不同的技术，使用Geohash位置52点整数编码。由于编码和解码过程中所使用的初始最小和最大坐标不同，编码的编码也不同于标准。此命令返回一个标准的Geohash，在维基百科和geohash.org网站都有相关描述</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">将经纬度转换成11个字符的字符串</span><br>127.0.0.1:6379&gt; GEOHASH china:city shanghai beijing<br>1) &quot;wtw6st1uuq0&quot;<br>2) &quot;wx4sucvncn0&quot;<br></code></pre></td></tr></table></figure>
+
+<p>原理：</p>
+<p>​        geo底层使用了zset,因此也可以使用zset命令来操作</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; ZRANGE china:city 0 -1	#查询所有的城市<br>1) &quot;guiyang&quot;<br>2) &quot;chongqing&quot;<br>3) &quot;shenzhen&quot;<br>4) &quot;hangzhou&quot;<br>5) &quot;shanghai&quot;<br>6) &quot;beijing&quot;<br>127.0.0.1:6379&gt; zrem china:city beijing		#删除某一个城市的信息<br>(integer) 1<br></code></pre></td></tr></table></figure>
+
+<h2 id="Hyperloglog"><a href="#Hyperloglog" class="headerlink" title="Hyperloglog"></a>Hyperloglog</h2><blockquote>
+<p>什么是基数？</p>
+</blockquote>
+<p>A{1,3,5,7,8}</p>
+<p>B{1,3,5,7}</p>
+<p>基数：4，也就是两个集合不重复的元素个数</p>
+<blockquote>
+<p>简介</p>
+</blockquote>
+<p>redis 2.8.9就更新了Hyperloglog</p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><br>127.0.0.1:6379&gt; pfadd key1  a b c d e e f f d<br>(integer) 1<br>127.0.0.1:6379&gt; TYPE key1<br>string<br>127.0.0.1:6379&gt; pfcount key1<br>(integer) 6<br>127.0.0.1:6379&gt; pfadd key2 d e f i j<br>(integer) 1<br>127.0.0.1:6379&gt; PFMERGE key3 key1 key2<br>OK<br>127.0.0.1:6379&gt; pfcount key3<br>(integer) 8<br><br></code></pre></td></tr></table></figure>
+
+<p>0.81%的错误率，在允许错误的情况下是完全可以使用typerloglog的，可以用来统计用户访问量。</p>
+<h2 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h2><blockquote>
+<p>位存储</p>
+</blockquote>
+<p>适用于两个状态的，比如打卡、登录状态等。</p>
+<p>Bitmaps位图，数据结构，都是操作二进制位来进行记录，只有0和1两个状态</p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">测试，模拟周一到周日的打卡，1是打卡，0是未打卡</span><br><br>127.0.0.1:6379&gt; setbit sign 1 0	<br>(integer) 0<br>127.0.0.1:6379&gt; setbit sign 2 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit sign 3 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit sign 4 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit sign 5 0<br>(integer) 0<br>127.0.0.1:6379&gt; setbit sign 6 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit sign 7 0<br>(integer) 0<br>127.0.0.1:6379&gt; getbit sign 2			#查看周2的打卡状态<br>(integer) 1<br>127.0.0.1:6379&gt; getbit sign 7			#查看周日的打卡状态<br>(integer) 0<br>127.0.0.1:6379&gt; BITCOUNT sign			#查看这一周的打卡次数<br>(integer) 4<br></code></pre></td></tr></table></figure>
+
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>一系列操作的集合，一个事务的所有命令都会被序列化，在事务执行过程中，会按照顺序执行</p>
+<p>一次性、顺序性、排他性，没有隔离级别的概念</p>
+<p>Redis单条命令是保证原子性的，但是事务不保证原子性</p>
+<p>Redis的事务：</p>
+<ul>
+<li>​    开启事务（multi）</li>
+<li>​    命令入队</li>
+<li>​    执行事务（exec）</li>
+</ul>
+<blockquote>
+<p>正常执行事务</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; MULTI 				#开启事务<br>OK<br><span class="hljs-meta">#</span><span class="bash">命令入队</span><br>127.0.0.1:6379&gt; set k1 v1			<br>QUEUED<br>127.0.0.1:6379&gt; set k2 v2<br>QUEUED<br>127.0.0.1:6379&gt; set k3 v3<br>QUEUED<br>127.0.0.1:6379&gt; get k1<br>QUEUED<br><span class="hljs-meta">#</span><span class="bash">执行事务（按顺序执行）</span><br>127.0.0.1:6379&gt; exec		<br>1) OK<br>2) OK<br>3) OK<br>4) &quot;v1&quot;<br><span class="hljs-meta"></span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">放弃事务</span><br>127.0.0.1:6379&gt; MULTI			#开启事务<br>OK<br><span class="hljs-meta">#</span><span class="bash">顺序入队</span><br>127.0.0.1:6379&gt; set k1 v1<br>QUEUED<br>127.0.0.1:6379&gt; set k1 v2<br>QUEUED<br>127.0.0.1:6379&gt; set k2 v2<br>QUEUED<br>127.0.0.1:6379&gt; set k3 v3<br>QUEUED<br>127.0.0.1:6379&gt; DISCARD			#放弃事务<br>OK<br>127.0.0.1:6379&gt; get k2			#一旦放弃事务，事务队列中的操作都不会执行<br>(nil)<br></code></pre></td></tr></table></figure>
+
+<p>Redis中不保证原子性</p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<p>情况1：命令语法错误导致整个事务的操作都无法执行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; MULTI				#开启事务<br>OK<br>127.0.0.1:6379&gt; set k1 v1			#顺序入队<br>QUEUED<br>127.0.0.1:6379&gt; set k2 v3<br>QUEUED<br>127.0.0.1:6379&gt; setget k3 v3		#命令不存在（类似编译时异常）<br>(error) ERR unknown command `setget`, with args beginning with: `k3`, `v3`, <br>127.0.0.1:6379&gt; set k4 v4<br>QUEUED<br>127.0.0.1:6379&gt; exec #执行事务，事务中存在“命令不存在”的问题，执行事务会报错，所有的命令都不会执行<br>(error) EXECABORT Transaction discarded because of previous errors.<br><br></code></pre></td></tr></table></figure>
+
+<p>情况2：语法没有问题，但是单条命令的逻辑可能有问题，比如用字符串进行自增操作，那么该条命令执行出错，其他的命令不收到影响。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; MULTI			#开启一个事务<br>OK<br>127.0.0.1:6379&gt; set k1 v1		#入队<br>QUEUED<br>127.0.0.1:6379&gt; INCR k1			#用k1的value进行自增，但是k1的value是字符串，不允许自增<br>QUEUED<br>127.0.0.1:6379&gt; set k2 v2<br>QUEUED<br>127.0.0.1:6379&gt; set k3 v3<br>QUEUED<br>127.0.0.1:6379&gt; get k1<br>QUEUED<br>127.0.0.1:6379&gt; exec			#执行事务，顺序执行，第二个操作出现问题，但是不影响其他的操作<br>1) OK<br>2) (error) ERR value is not an integer or out of range	<br>3) OK<br>4) OK<br>5) &quot;v1&quot;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>监控 watch</p>
+</blockquote>
+<p><strong>悲观锁：</strong></p>
+<ul>
+<li>很悲观，什么时候都可能出现问题，无论做什么都要加锁</li>
+</ul>
+<p><strong>乐观锁：</strong></p>
+<ul>
+<li>很乐观，认为不会出现问题，所以不会上锁，更新数据的时候判断一下是否有人修改过数据</li>
+<li>获取version</li>
+<li>更新的时候比较version</li>
+</ul>
+<blockquote>
+<p>Redis的监视测试</p>
+</blockquote>
+<p>正常执行成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; set money 100<br>OK<br>127.0.0.1:6379&gt; set out 0<br>OK<br>127.0.0.1:6379&gt; watch money			#监视money<br>OK<br>127.0.0.1:6379&gt; MULTI	#开启事务，事务正常结束期间没有发生变动，这个时候就正常执行成功<br>OK<br>127.0.0.1:6379&gt; DECRby money 20<br>QUEUED<br>127.0.0.1:6379&gt; INCRBY out 20<br>QUEUED<br>127.0.0.1:6379&gt; exec<br>1) (integer) 80<br>2) (integer) 20<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">127.0.0.1:6379&gt; set money 100<br>OK<br>127.0.0.1:6379&gt; watch money				#监视money<br>OK<br>127.0.0.1:6379&gt; MULTI<br>OK<br>127.0.0.1:6379&gt; DECRBY money 20<br>QUEUED<br>127.0.0.1:6379&gt; set out 0<br>QUEUED<br>127.0.0.1:6379&gt; INCRBY out 20<br>QUEUED									<br>										#在事务还没执行之前另一个线程修改了money<br>										127.0.0.1:6379&gt; set money 200<br>										OK<br><br>127.0.0.1:6379&gt; exec   					#导致事务执行失败<br>(nil)<br>127.0.0.1:6379&gt; <br><br></code></pre></td></tr></table></figure>
+
+<p><strong>如果执行事务失败，只要使用<code>unwatch</code>进行解锁，再重新监视就可</strong></p>
+<h1 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h1><p>用java操作Redis</p>
+<blockquote>
+<p>Redis官方推荐的java连接开发工具，使用java操作Redis的中间件，如果要用java操作Redis，那么一定要非常熟悉Jedis</p>
+</blockquote>
+<p>1、导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>redis.clients<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jedis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.7.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><span class="hljs-comment">&lt;!--版本号可根据实际情况填写--&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>2、测试</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.wesker;<br><br><span class="hljs-keyword">import</span> redis.clients.jedis.Jedis;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ping</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Jedis jedis = <span class="hljs-keyword">new</span> Jedis(<span class="hljs-string">&quot;localhost&quot;</span>,<span class="hljs-number">6379</span>);<br>        System.out.println(jedis.ping());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2022/06/23/Redis/image-20220628161749482.png" alt="image-20220628161749482"></p>
+<p><strong>常用的API</strong></p>
+<p>Jedis常用的方法和redis客户端中的命令一致</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.wesker;<br><br><span class="hljs-keyword">import</span> redis.clients.jedis.Jedis;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ping</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Jedis jedis = <span class="hljs-keyword">new</span> Jedis(<span class="hljs-string">&quot;localhost&quot;</span>,<span class="hljs-number">6379</span>);<br>        jedis.flushDB();<br>        jedis.set(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;key1_value1&quot;</span>);<br>        jedis.set(<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;key2_value2&quot;</span>);<br>        jedis.set(<span class="hljs-string">&quot;key3&quot;</span>, <span class="hljs-string">&quot;key3_value3&quot;</span>);<br>        jedis.set(<span class="hljs-string">&quot;key4&quot;</span>, <span class="hljs-string">&quot;key4_value4&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;根据key获取指定的value:&quot;</span>+jedis.get(<span class="hljs-string">&quot;key1&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;判断数据类型：&quot;</span>+jedis.type(<span class="hljs-string">&quot;key1&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;获取所有的key：&quot;</span>+jedis.keys(<span class="hljs-string">&quot;*&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;根据多个key获取指定的多个value:&quot;</span>+jedis.mget(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;key3&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;追加内容：_append，并返回追加后的字符串长度：&quot;</span>+jedis.append(<span class="hljs-string">&quot;key1&quot;</span>,<span class="hljs-string">&quot;_append&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;查看追加后的：&quot;</span>+jedis.get(<span class="hljs-string">&quot;key1&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;查询指定key的value的长度：&quot;</span>+jedis.strlen(<span class="hljs-string">&quot;key1&quot;</span>));<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
